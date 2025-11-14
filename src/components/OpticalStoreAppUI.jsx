@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { availableBrands, loadBrandData } from '../utils/brandDataLoader';
 import { findLensOptions, findAddPowerOptions, findNearVisionOptions, findCylKTOptions, findCompKTOptions, findProgressiveCylOptions, findProgressiveCompOptions, validateQuarterInterval, findCrizalLensOptions, findCrizalRxOptions } from '../utils/prescriptionCalculations';
+import { findCrizalBifocalOptions } from '../utils/crizalBifocalCalculations';
 
 const OpticalStoreAppUI = () => {
   // Brand selection state
@@ -292,7 +293,37 @@ const OpticalStoreAppUI = () => {
       });
     }
 
-    // Check if cylinder value is provided - determine which calculation type
+    // For Crizal bifocal, allow calculation with just sphere or just cylinder or both
+    if (selectedBrand === 'crizal') {
+      setIsCalculating(true);
+      setCalculationError(null);
+
+      try {
+        console.log('Calling Crizal bifocal calculation with:', { dvSphere, dvCylinder, dvAxis, addPower });
+        const results = findCrizalBifocalOptions(
+          brandData,
+          dvSphere,
+          dvCylinder,
+          dvAxis,
+          addPower
+        );
+        console.log('Crizal bifocal results:', results);
+
+        if (results.error) {
+          setCalculationError(results.error);
+          setCalculationResults(null);
+        } else {
+          setCalculationResults(results);
+        }
+      } catch (error) {
+        setCalculationError('Error calculating lens options: ' + error.message);
+      } finally {
+        setIsCalculating(false);
+      }
+      return;
+    }
+
+    // Check if cylinder value is provided - determine which calculation type for other brands
     if (dvCylinder !== 0 || nvCylinder !== 0) {
       // Use whichever cylinder is non-zero
       const cylToUse = dvCylinder !== 0 ? dvCylinder : nvCylinder;
@@ -304,9 +335,8 @@ const OpticalStoreAppUI = () => {
       try {
         let results;
 
-        // If sphere is also provided, use COMP_KT calculation
         if (dvSphere !== 0) {
-          // COMP_KT calculation (sphere + cylinder + axis)
+          // COMP_KT calculation (sphere + cylinder + axis) for other brands
           results = findCompKTOptions(
             brandData,
             dvSphere,
@@ -1310,8 +1340,153 @@ const OpticalStoreAppUI = () => {
                               Matching Lens Options
                             </h5>
 
-                            {/* Unified Dropdown - Show appropriate options based on available products */}
+                            {/* Check if we have bifocal products */}
                             {(() => {
+                              const hasBifocal = calculationResults.matches.some(m => {
+                                const productType = brandData.products[m.productKey]?.type;
+                                return productType === 'BIFOCAL' || productType === 'BIFOCAL_PHOTOCHROMIC';
+                              });
+
+                              // If bifocal products, show bifocal table format
+                              if (hasBifocal && calculationMode === 'add-calculation') {
+                                // Group bifocal matches by product name and index
+                                const bifocalGroups = {};
+                                
+                                calculationResults.matches.forEach(match => {
+                                  const productType = brandData.products[match.productKey]?.type;
+                                  if (productType === 'BIFOCAL' || productType === 'BIFOCAL_PHOTOCHROMIC') {
+                                    const key = `${match.productName}_${match.index}`;
+                                    if (!bifocalGroups[key]) {
+                                      bifocalGroups[key] = {
+                                        productName: match.productName,
+                                        index: match.index,
+                                        variants: []
+                                      };
+                                    }
+                                    bifocalGroups[key].variants.push(match);
+                                  }
+                                });
+
+                                console.log('Bifocal groups created:', Object.keys(bifocalGroups));
+                                console.log('Full bifocal groups:', bifocalGroups);
+
+                                // Define coating order
+                                const coatings = ['SHC', 'TITUS', 'Crizal Easy Pro', 'Crizal Rock', 'Crizal Prevencia'];
+
+                                return (
+                                  <div className="table-responsive">
+                                    <table className="table table-striped table-bordered table-hover">
+                                      <thead className="thead-dark">
+                                        <tr>
+                                          <th scope="col">VARIANT</th>
+                                          <th scope="col">INDEX</th>
+                                          {coatings.map((coating, idx) => (
+                                            <th key={idx} scope="col">{coating}</th>
+                                          ))}
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        {Object.values(bifocalGroups).map((group, groupIdx) => {
+                                          // Create a map of coating to variant details for this group
+                                          const coatingVariantMap = {};
+                                          group.variants.forEach(v => {
+                                            coatingVariantMap[v.coating] = v;
+                                          });
+
+                                          return (
+                                            <tr key={groupIdx}>
+                                              <td><strong>{group.productName}</strong></td>
+                                              <td>{group.index}</td>
+                                              {coatings.map((coating, coatingIdx) => {
+                                                const variant = coatingVariantMap[coating];
+                                                return (
+                                                  <td key={coatingIdx}>
+                                                    {variant ? (
+                                                      <span 
+                                                        onClick={() => {
+                                                          setSelectedLensDetails(variant);
+                                                          setShowModal(true);
+                                                        }}
+                                                        style={{ 
+                                                          cursor: 'pointer', 
+                                                          color: '#007bff',
+                                                          textDecoration: 'underline'
+                                                        }}
+                                                      >
+                                                        ₹{variant.price.toLocaleString()}
+                                                      </span>
+                                                    ) : '-'}
+                                                  </td>
+                                                );
+                                              })}
+                                            </tr>
+                                          );
+                                        })}
+                                      </tbody>
+                                    </table>
+
+                                    {/* Optifog Upgrade Card for Bifocals */}
+                                    <div className="mt-4">
+                                      <div className="card border-info">
+                                        <div className="card-body text-center">
+                                          <h6 className="text-info mb-3">
+                                            <i className="fas fa-plus-circle mr-2"></i>
+                                            ADD-ON UPGRADE AVAILABLE
+                                          </h6>
+                                          <div className="d-flex align-items-center justify-content-center">
+                                            <div className="mr-4">
+                                              <img 
+                                                src="/optifog-icon.svg" 
+                                                alt="Fog Free Vision Optifog"
+                                                className="rounded"
+                                                style={{ border: '2px solid #007bff', width: '80px', height: '80px' }}
+                                              />
+                                            </div>
+                                            <div className="text-left">
+                                              <h5 className="mb-1">FOG FREE VISION (Optifog)</h5>
+                                              <p className="mb-1 text-muted">Available for Crizal Rock Bifocals</p>
+                                              <h4 className="text-success mb-0">
+                                                <strong>+₹2000/Pair</strong>
+                                              </h4>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    {/* Essidrive Upgrade Card for Bifocals */}
+                                    <div className="mt-3">
+                                      <div className="card border-info">
+                                        <div className="card-body text-center">
+                                          <h6 className="text-info mb-3">
+                                            <i className="fas fa-plus-circle mr-2"></i>
+                                            ADD-ON UPGRADE AVAILABLE
+                                          </h6>
+                                          <div className="d-flex align-items-center justify-content-center">
+                                            <div className="mr-4">
+                                              <img 
+                                                src="/essidrive-icon.svg" 
+                                                alt="Essidrive"
+                                                className="rounded"
+                                                style={{ border: '2px solid #007bff', width: '80px', height: '80px' }}
+                                              />
+                                            </div>
+                                            <div className="text-left">
+                                              <h5 className="mb-1">ESSIDRIVE™</h5>
+                                              <p className="mb-1 text-muted">Available for Crizal Rock Bifocals</p>
+                                              <h4 className="text-success mb-0">
+                                                <strong>+₹2000/Pair</strong>
+                                              </h4>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                );
+                              }
+
+                              // Otherwise show single vision dropdown and table
                               const hasFSVStock = calculationResults.matches.some(m => {
                                 const productType = brandData.products[m.productKey]?.type;
                                 return productType === 'FSV_STOCK_LENS';
@@ -1767,18 +1942,28 @@ const OpticalStoreAppUI = () => {
                     <strong className="text-muted">Diameter:</strong>
                     <p className="mb-0">{selectedLensDetails.dia} mm</p>
                   </div>
+                  {selectedLensDetails.coating && (
+                    <div className="col-6 mb-3">
+                      <strong className="text-muted">Coating:</strong>
+                      <p className="mb-0">{selectedLensDetails.coating}</p>
+                    </div>
+                  )}
                   <div className="col-6 mb-3">
                     <strong className="text-muted">Price:</strong>
-                    <p className="mb-0 text-success font-weight-bold">₹{selectedLensDetails.price}</p>
+                    <p className="mb-0 text-success font-weight-bold">₹{selectedLensDetails.price?.toLocaleString()}</p>
                   </div>
-                  <div className="col-6 mb-3">
-                    <strong className="text-muted">RP Max:</strong>
-                    <p className="mb-0">{selectedLensDetails.rp_max}</p>
-                  </div>
-                  <div className="col-6 mb-3">
-                    <strong className="text-muted">Max Cylinder:</strong>
-                    <p className="mb-0">{selectedLensDetails.max_cyl}</p>
-                  </div>
+                  {selectedLensDetails.rp_max && (
+                    <div className="col-6 mb-3">
+                      <strong className="text-muted">RP Max:</strong>
+                      <p className="mb-0">{selectedLensDetails.rp_max}</p>
+                    </div>
+                  )}
+                  {selectedLensDetails.max_cyl && (
+                    <div className="col-6 mb-3">
+                      <strong className="text-muted">Max Cylinder:</strong>
+                      <p className="mb-0">{selectedLensDetails.max_cyl}</p>
+                    </div>
+                  )}
                   {selectedLensDetails.power_range && (
                     <div className="col-12 mb-3">
                       <strong className="text-muted">Power Range:</strong>
@@ -1790,8 +1975,13 @@ const OpticalStoreAppUI = () => {
                             SPH: {selectedLensDetails.power_range.sph_min} to {selectedLensDetails.power_range.sph_max}
                           </p>
                           <p className="mb-0">
-                            CYL: {selectedLensDetails.power_range.cyl_max} to {selectedLensDetails.power_range.cyl_min}
+                            CYL: {selectedLensDetails.power_range.cyl_min} to {selectedLensDetails.power_range.cyl_max}
                           </p>
+                          {selectedLensDetails.power_range.add_min !== undefined && selectedLensDetails.power_range.add_max !== undefined && (
+                            <p className="mb-0">
+                              ADD: {selectedLensDetails.power_range.add_min} to {selectedLensDetails.power_range.add_max}
+                            </p>
+                          )}
                         </>
                       )}
                     </div>

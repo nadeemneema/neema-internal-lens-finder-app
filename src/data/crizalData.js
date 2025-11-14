@@ -652,9 +652,9 @@ const crizalData = {
       "variants": [
         {
           "index": "1.50",
-          "dia": 55,
+          "dia": 70,
           "power_range": {
-            "sph_min": 7.0,
+            "sph_min": 6.0,
             "sph_max": -8.0,
             "cyl_min": 4.0,
             "cyl_max": -6.0,
@@ -666,7 +666,7 @@ const crizalData = {
         },
         {
           "index": "1.50",
-          "dia": 60,
+          "dia": "55/60/65",
           "power_range": {
             "sph_min": 8.0,
             "sph_max": -8.0,
@@ -679,21 +679,8 @@ const crizalData = {
           "material": "Clear or Blue UV Capture"
         },
         {
-          "index": "1.50",
-          "dia": 70,
-          "power_range": {
-            "sph_min": 6.0,
-            "sph_max": -8.0,
-            "cyl_min": 4.0,
-            "cyl_max": -6.0
-          },
-          "price": 4310,
-          "available": true,
-          "material": "Clear or Blue UV Capture"
-        },
-        {
           "index": "1.56",
-          "dia": 60,
+          "dia": "55/60/65",
           "power_range": {
             "sph_min": 6.0,
             "sph_max": -8.0,
@@ -732,7 +719,7 @@ const crizalData = {
         },
         {
           "index": "1.59",
-          "dia": 60,
+          "dia": "55/60/65",
           "power_range": {
             "sph_min": 6.0,
             "sph_max": -9.5,
@@ -771,7 +758,7 @@ const crizalData = {
         },
         {
           "index": "1.60",
-          "dia": 60,
+          "dia": "55/60/65",
           "power_range": {
             "sph_min": 6.0,
             "sph_max": -10.0,
@@ -810,23 +797,10 @@ const crizalData = {
         },
         {
           "index": "1.67",
-          "dia": 60,
+          "dia": "55/60/65",
           "power_range": {
             "sph_min": 6.0,
             "sph_max": -13.0,
-            "cyl_min": 4.0,
-            "cyl_max": -6.0
-          },
-          "price": 8900,
-          "available": true,
-          "material": "Clear or Blue UV Capture"
-        },
-        {
-          "index": "1.67",
-          "dia": 65,
-          "power_range": {
-            "sph_min": -9.0,
-            "sph_max": -11.0,
             "cyl_min": 4.0,
             "cyl_max": -6.0
           },
@@ -849,10 +823,10 @@ const crizalData = {
         },
         {
           "index": "1.67",
-          "dia": 75,
+          "dia": "75/80",
           "power_range": {
-            "sph_min": -6.0,
-            "sph_max": -7.0,
+            "sph_min": 4.0,
+            "sph_max": -8.0,
             "cyl_min": 4.0,
             "cyl_max": -6.0
           },
@@ -862,9 +836,9 @@ const crizalData = {
         },
         {
           "index": "1.74",
-          "dia": 60,
+          "dia": "55/60/65",
           "power_range": {
-            "sph_min": -11.0,
+            "sph_min": 6.0,
             "sph_max": -13.0,
             "cyl_min": 4.0,
             "cyl_max": -6.0
@@ -904,9 +878,9 @@ const crizalData = {
       "variants": [
         {
           "index": "1.50",
-          "dia": 55,
+          "dia": 70,
           "power_range": {
-            "sph_min": 7.0,
+            "sph_min": 6.0,
             "sph_max": -8.0,
             "cyl_min": 4.0,
             "cyl_max": -6.0,
@@ -918,7 +892,7 @@ const crizalData = {
         },
         {
           "index": "1.50",
-          "dia": 60,
+          "dia": "55/60/65",
           "power_range": {
             "sph_min": 8.0,
             "sph_max": -8.0,
@@ -931,21 +905,8 @@ const crizalData = {
           "material": "Clear or Blue UV Capture"
         },
         {
-          "index": "1.50",
-          "dia": 70,
-          "power_range": {
-            "sph_min": 6.0,
-            "sph_max": -8.0,
-            "cyl_min": 4.0,
-            "cyl_max": -6.0
-          },
-          "price": 5900,
-          "available": true,
-          "material": "Clear or Blue UV Capture"
-        },
-        {
           "index": "1.56",
-          "dia": 60,
+          "dia": "55/60/65",
           "power_range": {
             "sph_min": 6.0,
             "sph_max": -8.0,
@@ -961,7 +922,7 @@ const crizalData = {
           "dia": 70,
           "power_range": {
             "sph_min": 4.0,
-            "sph_max": -7.0,
+            "sph_max": -8.0,
             "cyl_min": 4.0,
             "cyl_max": -6.0
           },
@@ -984,7 +945,7 @@ const crizalData = {
         },
         {
           "index": "1.59",
-          "dia": 60,
+          "dia": "55/60/65",
           "power_range": {
             "sph_min": 6.0,
             "sph_max": -9.5,
@@ -1010,7 +971,7 @@ const crizalData = {
         },
         {
           "index": "1.59",
-          "dia": 75,
+          "dia": "75/80",
           "power_range": {
             "sph_min": 4.0,
             "sph_max": -6.0,
@@ -1023,7 +984,7 @@ const crizalData = {
         },
         {
           "index": "1.60",
-          "dia": 60,
+          "dia": "55/60/65",
           "power_range": {
             "sph_min": 6.0,
             "sph_max": -10.0,
@@ -1049,7 +1010,7 @@ const crizalData = {
         },
         {
           "index": "1.60",
-          "dia": 75,
+          "dia": "75/80",
           "power_range": {
             "sph_min": 4.0,
             "sph_max": -6.0,
@@ -1062,7 +1023,7 @@ const crizalData = {
         },
         {
           "index": "1.67",
-          "dia": 60,
+          "dia": "55/60/65",
           "power_range": {
             "sph_min": 6.0,
             "sph_max": -13.0,
@@ -1075,19 +1036,6 @@ const crizalData = {
         },
         {
           "index": "1.67",
-          "dia": 65,
-          "power_range": {
-            "sph_min": -9.0,
-            "sph_max": -11.0,
-            "cyl_min": 4.0,
-            "cyl_max": -6.0
-          },
-          "price": 10500,
-          "available": true,
-          "material": "Clear or Blue UV Capture"
-        },
-        {
-          "index": "1.67",
           "dia": 70,
           "power_range": {
             "sph_min": 6.0,
@@ -1101,7 +1049,7 @@ const crizalData = {
         },
         {
           "index": "1.67",
-          "dia": 75,
+          "dia": "75/80",
           "power_range": {
             "sph_min": 4.0,
             "sph_max": -8.0,
@@ -1114,10 +1062,23 @@ const crizalData = {
         },
         {
           "index": "1.74",
-          "dia": 70,
+          "dia": "55/60/65",
           "power_range": {
-            "sph_min": -7.0,
-            "sph_max": -9.0,
+            "sph_min": 6.0,
+            "sph_max": -13.0,
+            "cyl_min": 4.0,
+            "cyl_max": -6.0
+          },
+          "price": 15000,
+          "available": true,
+          "material": "Clear"
+        },
+        {
+          "index": "1.74",
+          "dia": "55/60/65",
+          "power_range": {
+            "sph_min": 0,
+            "sph_max": -8.0,
             "cyl_min": 4.0,
             "cyl_max": -6.0
           },
@@ -1129,8 +1090,8 @@ const crizalData = {
           "index": "1.74",
           "dia": 75,
           "power_range": {
-            "sph_min": -6.0,
-            "sph_max": -7.0,
+            "sph_min": 6.0,
+            "sph_max": -12.0,
             "cyl_min": 4.0,
             "cyl_max": -6.0
           },
@@ -1146,9 +1107,9 @@ const crizalData = {
       "variants": [
         {
           "index": "1.50",
-          "dia": 55,
+          "dia": 70,
           "power_range": {
-            "sph_min": 7.0,
+            "sph_min": 6.0,
             "sph_max": -8.0,
             "cyl_min": 4.0,
             "cyl_max": -6.0,
@@ -1160,7 +1121,7 @@ const crizalData = {
         },
         {
           "index": "1.50",
-          "dia": 60,
+          "dia": "55/60/65",
           "power_range": {
             "sph_min": 8.0,
             "sph_max": -8.0,
@@ -1173,21 +1134,8 @@ const crizalData = {
           "material": "Clear or Blue UV Capture"
         },
         {
-          "index": "1.50",
-          "dia": 70,
-          "power_range": {
-            "sph_min": 6.0,
-            "sph_max": -8.0,
-            "cyl_min": 4.0,
-            "cyl_max": -6.0
-          },
-          "price": 7310,
-          "available": true,
-          "material": "Clear or Blue UV Capture"
-        },
-        {
           "index": "1.56",
-          "dia": 60,
+          "dia": "55/60/65",
           "power_range": {
             "sph_min": 6.0,
             "sph_max": -8.0,
@@ -1226,7 +1174,7 @@ const crizalData = {
         },
         {
           "index": "1.59",
-          "dia": 60,
+          "dia": "55/60/65",
           "power_range": {
             "sph_min": 6.0,
             "sph_max": -9.5,
@@ -1252,7 +1200,7 @@ const crizalData = {
         },
         {
           "index": "1.59",
-          "dia": 75,
+          "dia": "75/80",
           "power_range": {
             "sph_min": 4.0,
             "sph_max": -6.0,
@@ -1265,7 +1213,7 @@ const crizalData = {
         },
         {
           "index": "1.60",
-          "dia": 60,
+          "dia": "55/60/65",
           "power_range": {
             "sph_min": 6.0,
             "sph_max": -10.0,
@@ -1291,7 +1239,7 @@ const crizalData = {
         },
         {
           "index": "1.60",
-          "dia": 75,
+          "dia": "75/80",
           "power_range": {
             "sph_min": 4.0,
             "sph_max": -6.0,
@@ -1304,23 +1252,10 @@ const crizalData = {
         },
         {
           "index": "1.67",
-          "dia": 60,
+          "dia": "55/60/65",
           "power_range": {
             "sph_min": 6.0,
             "sph_max": -13.0,
-            "cyl_min": 4.0,
-            "cyl_max": -6.0
-          },
-          "price": 11900,
-          "available": true,
-          "material": "Clear or Blue UV Capture"
-        },
-        {
-          "index": "1.67",
-          "dia": 65,
-          "power_range": {
-            "sph_min": -9.0,
-            "sph_max": -11.0,
             "cyl_min": 4.0,
             "cyl_max": -6.0
           },
@@ -1343,10 +1278,10 @@ const crizalData = {
         },
         {
           "index": "1.67",
-          "dia": 75,
+          "dia": "75/80",
           "power_range": {
-            "sph_min": -6.0,
-            "sph_max": -7.0,
+            "sph_min": 4.0,
+            "sph_max": -8.0,
             "cyl_min": 4.0,
             "cyl_max": -6.0
           },
@@ -1362,9 +1297,9 @@ const crizalData = {
       "variants": [
         {
           "index": "1.50",
-          "dia": 55,
+          "dia": 70,
           "power_range": {
-            "sph_min": 7.0,
+            "sph_min": 6.0,
             "sph_max": -8.0,
             "cyl_min": 4.0,
             "cyl_max": -6.0,
@@ -1376,7 +1311,7 @@ const crizalData = {
         },
         {
           "index": "1.50",
-          "dia": 60,
+          "dia": "55/60/65",
           "power_range": {
             "sph_min": 8.0,
             "sph_max": -8.0,
@@ -1389,21 +1324,8 @@ const crizalData = {
           "material": "Clear or Blue UV Capture"
         },
         {
-          "index": "1.50",
-          "dia": 70,
-          "power_range": {
-            "sph_min": 6.0,
-            "sph_max": -8.0,
-            "cyl_min": 4.0,
-            "cyl_max": -6.0
-          },
-          "price": 7770,
-          "available": true,
-          "material": "Clear or Blue UV Capture"
-        },
-        {
           "index": "1.56",
-          "dia": 60,
+          "dia": "55/60/65",
           "power_range": {
             "sph_min": 6.0,
             "sph_max": -8.0,
@@ -1442,7 +1364,7 @@ const crizalData = {
         },
         {
           "index": "1.59",
-          "dia": 60,
+          "dia": "55/60/65",
           "power_range": {
             "sph_min": 6.0,
             "sph_max": -9.5,
@@ -1468,7 +1390,7 @@ const crizalData = {
         },
         {
           "index": "1.59",
-          "dia": 75,
+          "dia": "75/80",
           "power_range": {
             "sph_min": 4.0,
             "sph_max": -6.0,
@@ -1481,7 +1403,7 @@ const crizalData = {
         },
         {
           "index": "1.60",
-          "dia": 60,
+          "dia": "55/60/65",
           "power_range": {
             "sph_min": 6.0,
             "sph_max": -10.0,
@@ -1507,7 +1429,7 @@ const crizalData = {
         },
         {
           "index": "1.60",
-          "dia": 75,
+          "dia": "75/80",
           "power_range": {
             "sph_min": 4.0,
             "sph_max": -6.0,
@@ -1520,23 +1442,10 @@ const crizalData = {
         },
         {
           "index": "1.67",
-          "dia": 60,
+          "dia": "55/60/65",
           "power_range": {
             "sph_min": 6.0,
             "sph_max": -13.0,
-            "cyl_min": 4.0,
-            "cyl_max": -6.0
-          },
-          "price": 12370,
-          "available": true,
-          "material": "Clear or Blue UV Capture"
-        },
-        {
-          "index": "1.67",
-          "dia": 65,
-          "power_range": {
-            "sph_min": -9.0,
-            "sph_max": -11.0,
             "cyl_min": 4.0,
             "cyl_max": -6.0
           },
@@ -1559,10 +1468,10 @@ const crizalData = {
         },
         {
           "index": "1.67",
-          "dia": 75,
+          "dia": "75/80",
           "power_range": {
-            "sph_min": -6.0,
-            "sph_max": -7.0,
+            "sph_min": 4.0,
+            "sph_max": -8.0,
             "cyl_min": 4.0,
             "cyl_max": -6.0
           },
@@ -1583,7 +1492,7 @@ const crizalData = {
           "power_range": {
             "sph_min": 4.0,
             "sph_max": 0.25,
-            "cyl_min": 0,
+            "cyl_min": 2.0,
             "cyl_max": -2.0,
             "note": "Cross compound available"
           },
@@ -1605,21 +1514,6 @@ const crizalData = {
           "price": 1200,
           "available": true
         },
-        {
-          "index": "1.50",
-          "dia": 65,
-          "power_range": {
-            "sph_min": 6.0,
-            "sph_max": 0.25,
-            "cyl_min": 0,
-            "cyl_max": -2.0,
-            "note": "Cross compound available"
-          },
-          "rp_max": 6,
-          "max_cyl": -2,
-          "price": 1200,
-          "available": true
-        }
       ]
     },
     "ELEMENTS": {
@@ -1636,6 +1530,20 @@ const crizalData = {
             "cyl_max": -2.0
           },
           "rp_max": -8,
+          "max_cyl": -2,
+          "price": 1780,
+          "available": true
+        },
+        {
+          "index": "1.56",
+          "dia": 65,
+          "power_range": {
+            "sph_min": 6,
+            "sph_max": 0.25,
+            "cyl_min": 2.0,
+            "cyl_max": -2.0
+          },
+          "rp_max": 6,
           "max_cyl": -2,
           "price": 1780,
           "available": true
@@ -1687,7 +1595,7 @@ const crizalData = {
           "power_range": {
             "sph_min": 6.0,
             "sph_max": 0.25,
-            "cyl_min": 0,
+            "cyl_min": 2.0,
             "cyl_max": -2.0,
             "note": "Cross compound available"
           },
@@ -1730,6 +1638,20 @@ const crizalData = {
       "variants": [
         {
           "index": "1.56",
+          "dia": 65,
+          "power_range": {
+            "sph_min": 6.0,
+            "sph_max": 0.25,
+            "cyl_min": 2.0,
+            "cyl_max": -2.0
+          },
+          "rp_max": 6,
+          "max_cyl": -2,
+          "price": 1120,
+          "available": true
+        },
+        {
+          "index": "1.56",
           "dia": 70,
           "power_range": {
             "sph_min": -6.25,
@@ -1756,6 +1678,395 @@ const crizalData = {
           "available": true
         }
       ]
+    },
+
+    // BIFOCAL PRODUCTS
+    "BIFOCAL_KBF_CLEAR": {
+      "name": "Kryptok (KBF Clear)",
+      "type": "BIFOCAL",
+      "variants": [
+        {
+          "index": "1.50",
+          "dia": 70,
+          "coating": "SHC",
+          "power_range": {
+            "sph_min": 6.0,
+            "sph_max": -4.5,
+            "cyl_min": 4.0,
+            "cyl_max": -4.0,
+            "add_min": 0.75,
+            "add_max": 3.50
+          },
+          "price": 1960,
+          "available": true
+        },
+        {
+          "index": "1.50",
+          "dia": 70,
+          "coating": "TITUS",
+          "power_range": {
+            "sph_min": 6.0,
+            "sph_max": -4.5,
+            "cyl_min": 4.0,
+            "cyl_max": -4.0,
+            "add_min": 0.75,
+            "add_max": 3.50
+          },
+          "price": 2620,
+          "available": true
+        },
+        {
+          "index": "1.50",
+          "dia": 70,
+          "coating": "Crizal Easy Pro",
+          "power_range": {
+            "sph_min": 6.0,
+            "sph_max": -4.5,
+            "cyl_min": 4.0,
+            "cyl_max": -4.0,
+            "add_min": 0.75,
+            "add_max": 3.50
+          },
+          "price": 3930,
+          "available": true
+        },
+        {
+          "index": "1.50",
+          "dia": 70,
+          "coating": "Crizal Rock",
+          "power_range": {
+            "sph_min": 6.0,
+            "sph_max": -4.5,
+            "cyl_min": 4.0,
+            "cyl_max": -4.0,
+            "add_min": 0.75,
+            "add_max": 3.50
+          },
+          "price": 5620,
+          "available": true
+        },
+        {
+          "index": "1.50",
+          "dia": 70,
+          "coating": "Crizal Prevencia",
+          "power_range": {
+            "sph_min": 6.0,
+            "sph_max": -4.5,
+            "cyl_min": 4.0,
+            "cyl_max": -4.0,
+            "add_min": 0.75,
+            "add_max": 3.50
+          },
+          "price": 6370,
+          "available": true
+        }
+      ]
+    },
+    "BIFOCAL_DBF_CLEAR": {
+      "name": "D Bi-focal (DBF Clear)",
+      "type": "BIFOCAL",
+      "variants": [
+        {
+          "index": "1.50",
+          "dia": 70,
+          "coating": "SHC",
+          "power_range": {
+            "sph_min": 8.0,
+            "sph_max": -8.0,
+            "cyl_min": 4.0,
+            "cyl_max": -4.0,
+            "add_min": 0.75,
+            "add_max": 3.50
+          },
+          "price": 1960,
+          "available": true
+        },
+        {
+          "index": "1.50",
+          "dia": 70,
+          "coating": "TITUS",
+          "power_range": {
+            "sph_min": 8.0,
+            "sph_max": -8.0,
+            "cyl_min": 4.0,
+            "cyl_max": -4.0,
+            "add_min": 0.75,
+            "add_max": 3.50
+          },
+          "price": 2620,
+          "available": true
+        },
+        {
+          "index": "1.50",
+          "dia": 70,
+          "coating": "Crizal Easy Pro",
+          "power_range": {
+            "sph_min": 8.0,
+            "sph_max": -8.0,
+            "cyl_min": 4.0,
+            "cyl_max": -4.0,
+            "add_min": 0.75,
+            "add_max": 3.50
+          },
+          "price": 3930,
+          "available": true
+        },
+        {
+          "index": "1.50",
+          "dia": 70,
+          "coating": "Crizal Rock",
+          "power_range": {
+            "sph_min": 8.0,
+            "sph_max": -8.0,
+            "cyl_min": 4.0,
+            "cyl_max": -4.0,
+            "add_min": 0.75,
+            "add_max": 3.50
+          },
+          "price": 5620,
+          "available": true
+        },
+        {
+          "index": "1.50",
+          "dia": 70,
+          "coating": "Crizal Prevencia",
+          "power_range": {
+            "sph_min": 8.0,
+            "sph_max": -8.0,
+            "cyl_min": 4.0,
+            "cyl_max": -4.0,
+            "add_min": 0.75,
+            "add_max": 3.50
+          },
+          "price": 6370,
+          "available": true
+        },
+        {
+          "index": "1.59",
+          "dia": 70,
+          "coating": "TITUS",
+          "power_range": {
+            "sph_min": 6.0,
+            "sph_max": -10.0,
+            "cyl_min": 4.0,
+            "cyl_max": -4.0,
+            "add_min": 0.75,
+            "add_max": 3.50
+          },
+          "price": 6090,
+          "available": true
+        },
+        {
+          "index": "1.59",
+          "dia": 70,
+          "coating": "Crizal Easy Pro",
+          "power_range": {
+            "sph_min": 6.0,
+            "sph_max": -10.0,
+            "cyl_min": 4.0,
+            "cyl_max": -4.0,
+            "add_min": 0.75,
+            "add_max": 3.50
+          },
+          "price": 7210,
+          "available": true
+        },
+        {
+          "index": "1.59",
+          "dia": 70,
+          "coating": "Crizal Rock",
+          "power_range": {
+            "sph_min": 6.0,
+            "sph_max": -10.0,
+            "cyl_min": 4.0,
+            "cyl_max": -4.0,
+            "add_min": 0.75,
+            "add_max": 3.50
+          },
+          "price": 8900,
+          "available": true
+        },
+        {
+          "index": "1.59",
+          "dia": 70,
+          "coating": "Crizal Prevencia",
+          "power_range": {
+            "sph_min": 6.0,
+            "sph_max": -10.0,
+            "cyl_min": 4.0,
+            "cyl_max": -4.0,
+            "add_min": 0.75,
+            "add_max": 3.50
+          },
+          "price": 9650,
+          "available": true
+        }
+      ]
+    },
+    "BIFOCAL_DBF_CLASSIC": {
+      "name": "D Bi-focal Transitions Classic (DBF Classic - Grey)",
+      "type": "BIFOCAL_PHOTOCHROMIC",
+      "variants": [
+        {
+          "index": "1.50",
+          "dia": "67/70",
+          "coating": "SHC",
+          "power_range": {
+            "sph_min": 8.0,
+            "sph_max": -8.0,
+            "cyl_min": 4.0,
+            "cyl_max": -4.0,
+            "add_min": 0.75,
+            "add_max": 3.50
+          },
+          "price": 7310,
+          "available": true,
+          "color": "Grey",
+          "photochromic": true
+        },
+        {
+          "index": "1.50",
+          "dia": "67/70",
+          "coating": "TITUS",
+          "power_range": {
+            "sph_min": 8.0,
+            "sph_max": -8.0,
+            "cyl_min": 4.0,
+            "cyl_max": -4.0,
+            "add_min": 0.75,
+            "add_max": 3.50
+          },
+          "price": 8060,
+          "available": true,
+          "color": "Grey",
+          "photochromic": true
+        },
+        {
+          "index": "1.50",
+          "dia": "67/70",
+          "coating": "Crizal Easy Pro",
+          "power_range": {
+            "sph_min": 8.0,
+            "sph_max": -8.0,
+            "cyl_min": 4.0,
+            "cyl_max": -4.0,
+            "add_min": 0.75,
+            "add_max": 3.50
+          },
+          "price": 8340,
+          "available": true,
+          "color": "Grey",
+          "photochromic": true
+        },
+        {
+          "index": "1.50",
+          "dia": "67/70",
+          "coating": "Crizal Rock",
+          "power_range": {
+            "sph_min": 8.0,
+            "sph_max": -8.0,
+            "cyl_min": 4.0,
+            "cyl_max": -4.0,
+            "add_min": 0.75,
+            "add_max": 3.50
+          },
+          "price": 10030,
+          "available": true,
+          "color": "Grey",
+          "photochromic": true
+        },
+      ]
+    },
+    "BIFOCAL_KBF_SUNSATION": {
+      "name": "KBF Sunsations (Grey)",
+      "type": "BIFOCAL_PHOTOCHROMIC",
+      "variants": [
+        {
+          "index": "1.56",
+          "dia": 70,
+          "coating": "SHC",
+          "power_range": {
+            "sph_min": 4.0,
+            "sph_max": -4.0,
+            "cyl_min": 4.0,
+            "cyl_max": -4.0,
+            "add_min": 0.75,
+            "add_max": 3.50
+          },
+          "price": 4680,
+          "available": true,
+          "color": "Grey",
+          "photochromic": true
+        },
+        {
+          "index": "1.56",
+          "dia": 70,
+          "coating": "TITUS",
+          "power_range": {
+            "sph_min": 4.0,
+            "sph_max": -4.0,
+            "cyl_min": 4.0,
+            "cyl_max": -4.0,
+            "add_min": 0.75,
+            "add_max": 3.50
+          },
+          "price": 5620,
+          "available": true,
+          "color": "Grey",
+          "photochromic": true
+        },
+        {
+          "index": "1.56",
+          "dia": 70,
+          "coating": "Crizal Easy Pro",
+          "power_range": {
+            "sph_min": 4.0,
+            "sph_max": -4.0,
+            "cyl_min": 4.0,
+            "cyl_max": -4.0,
+            "add_min": 0.75,
+            "add_max": 3.50
+          },
+          "price": 6650,
+          "available": true,
+          "color": "Grey",
+          "photochromic": true
+        },
+        {
+          "index": "1.56",
+          "dia": 70,
+          "coating": "Crizal Rock",
+          "power_range": {
+            "sph_min": 4.0,
+            "sph_max": -4.0,
+            "cyl_min": 4.0,
+            "cyl_max": -4.0,
+            "add_min": 0.75,
+            "add_max": 3.50
+          },
+          "price": 8340,
+          "available": true,
+          "color": "Grey",
+          "photochromic": true
+        },
+        {
+          "index": "1.56",
+          "dia": 70,
+          "coating": "Crizal Prevencia",
+          "power_range": {
+            "sph_min": 4.0,
+            "sph_max": -4.0,
+            "cyl_min": 4.0,
+            "cyl_max": -4.0,
+            "add_min": 0.75,
+            "add_max": 3.50
+          },
+          "price": 9180,
+          "available": true,
+          "color": "Grey",
+          "photochromic": true
+        }
+      ]
     }
   },
   "special_offers": {
@@ -1763,6 +2074,11 @@ const crizalData = {
       "product": "Crizal Rock with Optifog",
       "price": 1870,
       "note": "Additional cost per pair"
+    },
+    "essidrive": {
+      "product": "Essidrive (Night Driving Enhancement)",
+      "price": 1870,
+      "note": "Additional cost over Crizal Rock"
     }
   },
   "notes": {
