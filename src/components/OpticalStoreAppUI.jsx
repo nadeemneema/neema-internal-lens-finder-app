@@ -49,6 +49,14 @@ const OpticalStoreAppUI = () => {
   // State for FSV type filter (FSV_STOCK_LENS, FSV_OTHER_RANGE, or RX_SINGLE_VISION)
   const [fsvTypeFilter, setFsvTypeFilter] = useState('FSV_STOCK_LENS');
 
+  // State for lens type visibility checkboxes (radio button behavior)
+  const [selectedLensType, setSelectedLensType] = useState('white');
+
+  // Computed states for backward compatibility
+  const showWhiteLenses = selectedLensType === 'white';
+  const showTransitionsLenses = selectedLensType === 'transitions';
+  const showSpecialLenses = selectedLensType === 'special';
+
   // State for selected colors in Transitions table
   const [selectedTransitionsColors, setSelectedTransitionsColors] = useState([]);
 
@@ -1539,6 +1547,88 @@ const OpticalStoreAppUI = () => {
                               return null;
                             })()}
 
+                            {/* Lens Type Selection Checkboxes */}
+                            {(() => {
+                              const hasFSVStock = calculationResults.matches.some(m => {
+                                const productType = brandData.products[m.productKey]?.type;
+                                return productType === 'FSV_STOCK_LENS' || productType === 'FSV_OTHER_RANGE';
+                              });
+                              const hasTransitions = calculationResults.matches.some(m => {
+                                const productType = brandData.products[m.productKey]?.type;
+                                return productType === 'FSV_PHOTOCHROMIC';
+                              });
+                              const hasEyezen = calculationResults.matches.some(m => {
+                                const productType = brandData.products[m.productKey]?.type;
+                                return productType === 'DIGITAL_ENHANCED_SINGLE_VISION';
+                              });
+
+                              if (!hasFSVStock && !hasTransitions && !hasEyezen) return null;
+
+                              return (
+                                <div className="mb-3 p-3 border rounded bg-light">
+                                  <div className="d-flex flex-wrap align-items-center">
+                                    <strong className="mr-3">Select Lens Types:</strong>
+                                    {hasFSVStock && (
+                                      <div className="custom-control custom-checkbox mr-4">
+                                        <input
+                                          type="checkbox"
+                                          className="custom-control-input"
+                                          id="whiteCheck"
+                                          checked={showWhiteLenses}
+                                          onChange={(e) => {
+                                            if (e.target.checked) {
+                                              setSelectedLensType('white');
+                                            }
+                                          }}
+                                        />
+                                        <label className="custom-control-label" htmlFor="whiteCheck">
+                                          White
+                                        </label>
+                                      </div>
+                                    )}
+                                    {hasTransitions && (
+                                      <div className="custom-control custom-checkbox mr-4">
+                                        <input
+                                          type="checkbox"
+                                          className="custom-control-input"
+                                          id="transitionsCheck"
+                                          checked={showTransitionsLenses}
+                                          onChange={(e) => {
+                                            if (e.target.checked) {
+                                              setSelectedLensType('transitions');
+                                            }
+                                          }}
+                                        />
+                                        <label className="custom-control-label" htmlFor="transitionsCheck">
+                                          Transitions (Photochromatic)
+                                        </label>
+                                      </div>
+                                    )}
+                                    {hasEyezen && (
+                                      <div className="custom-control custom-checkbox">
+                                        <input
+                                          type="checkbox"
+                                          className="custom-control-input"
+                                          id="specialCheck"
+                                          checked={showSpecialLenses}
+                                          onChange={(e) => {
+                                            if (e.target.checked) {
+                                              setSelectedLensType('special');
+                                            }
+                                          }}
+                                        />
+                                        <label className="custom-control-label" htmlFor="specialCheck">
+                                          Special Lenses (Eyezen)
+                                        </label>
+                                      </div>
+                                    )}
+                                  </div>
+                                </div>
+                              );
+                            })()}
+
+                            {/* FSV Main Table - Only show if White checkbox is checked */}
+                            {showWhiteLenses && (
                             <div className="table-responsive">
                               <table className="table table-striped table-bordered table-hover">
                                 <thead className="thead-dark">
@@ -1639,9 +1729,10 @@ const OpticalStoreAppUI = () => {
                                 </tbody>
                               </table>
                             </div>
+                            )}
 
                             {/* Check if FSV or RX products are displayed */}
-                            {(() => {
+                            {showWhiteLenses && (() => {
                               // Use the current filter selection to determine what's displayed
                               const filteredMatches = calculationResults.matches.filter(m => {
                                 const productType = brandData.products[m.productKey]?.type;
@@ -1708,7 +1799,7 @@ const OpticalStoreAppUI = () => {
                             })()}
 
                             {/* Transitions FSV Photochromic Table */}
-                            {(() => {
+                            {showTransitionsLenses && (() => {
                               const fsvPhotochromicMatches = calculationResults.matches.filter(m => {
                                 const productType = brandData.products[m.productKey]?.type;
                                 return productType === 'FSV_PHOTOCHROMIC' && (fsvTypeFilter === 'FSV_STOCK_LENS' || fsvTypeFilter === 'FSV_OTHER_RANGE');
@@ -1822,7 +1913,7 @@ const OpticalStoreAppUI = () => {
                             })()}
 
                             {/* Eyezen Start Stock Table */}
-                            {(() => {
+                            {showSpecialLenses && (() => {
                               const eyezenMatches = calculationResults.matches.filter(m => {
                                 const productType = brandData.products[m.productKey]?.type;
                                 return productType === 'DIGITAL_ENHANCED_SINGLE_VISION' && (fsvTypeFilter === 'FSV_STOCK_LENS' || fsvTypeFilter === 'FSV_OTHER_RANGE');
