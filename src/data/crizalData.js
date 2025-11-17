@@ -1482,7 +1482,7 @@ const crizalData = {
       ]
     },
     "KROMOS": {
-      "name": "Kromos",
+      "name": "Kromos (Tint)",
       "type": "FSV_OTHER_RANGE",
       "coating_type": "Tint table HC",
       "variants": [

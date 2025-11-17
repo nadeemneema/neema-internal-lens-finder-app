@@ -1527,7 +1527,8 @@ const OpticalStoreAppUI = () => {
                               // 2. RX products available AND FSV Other available (for Elements 1.60 case with cyl 0 to -4)
                               const showDropdown = (hasFSVStock && hasFSVOther) || (hasRxProducts && hasFSVOther && !hasFSVStock);
 
-                              if (showDropdown) {
+                              // Only show dropdown if White checkbox is ticked
+                              if (showDropdown && showWhiteLenses) {
                                 return (
                                   <div className="mb-3">
                                     <label htmlFor="fsvTypeSelect" className="mr-2"><strong>Select Type:</strong></label>
