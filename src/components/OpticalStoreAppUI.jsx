@@ -1821,6 +1821,79 @@ const OpticalStoreAppUI = () => {
                               );
                             })()}
 
+                            {/* Eyezen Start Stock Table */}
+                            {(() => {
+                              const eyezenMatches = calculationResults.matches.filter(m => {
+                                const productType = brandData.products[m.productKey]?.type;
+                                return productType === 'DIGITAL_ENHANCED_SINGLE_VISION' && (fsvTypeFilter === 'FSV_STOCK_LENS' || fsvTypeFilter === 'FSV_OTHER_RANGE');
+                              });
+
+                              if (eyezenMatches.length === 0) return null;
+
+                              // Group by index and dia
+                              const groupedByIndex = {};
+                              eyezenMatches.forEach(match => {
+                                if (!groupedByIndex[match.index]) {
+                                  groupedByIndex[match.index] = [];
+                                }
+                                groupedByIndex[match.index].push(match);
+                              });
+
+                              return (
+                                <div className="mt-4">
+                                  <h5 className="text-primary mb-3">
+                                    <i className="fas fa-eye mr-2"></i>
+                                    Eyezen Start Stock
+                                  </h5>
+                                  <div className="table-responsive">
+                                    <table className="table table-bordered table-sm">
+                                      <thead>
+                                        <tr className="table-primary">
+                                          <th className="text-center align-middle">INDEX</th>
+                                          <th className="text-center align-middle">COATING</th>
+                                          <th className="text-center align-middle">PRICE</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        {Object.keys(groupedByIndex).sort().map((index, indexIdx) => {
+                                          const variants = groupedByIndex[index];
+                                          return variants.map((variant, variantIdx) => (
+                                            <tr key={`${indexIdx}-${variantIdx}`}>
+                                              {variantIdx === 0 && (
+                                                <td className="text-center align-middle font-weight-bold" rowSpan={variants.length}>
+                                                  {index}
+                                                </td>
+                                              )}
+                                              <td className="text-center">
+                                                <span className="badge badge-info">{variant.coating}</span>
+                                              </td>
+                                              <td className="text-center">
+                                                <span
+                                                  onClick={() => {
+                                                    setSelectedLensDetails(variant);
+                                                    setShowModal(true);
+                                                  }}
+                                                  style={{ cursor: 'pointer', color: '#007bff', textDecoration: 'underline' }}
+                                                >
+                                                  ₹{variant.price.toLocaleString()}
+                                                </span>
+                                              </td>
+                                            </tr>
+                                          ));
+                                        })}
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                  <div className="text-muted small">
+                                    <p className="mb-0">
+                                      <i className="fas fa-info-circle mr-1"></i>
+                                      Digital enhanced single vision lenses designed for digital device users with Blue UV Capture technology.
+                                    </p>
+                                  </div>
+                                </div>
+                              );
+                            })()}
+
                             {/* Transitions RX Photochromic Table */}
                             {(() => {
                               const rxPhotochromicMatches = calculationResults.matches.filter(m => {

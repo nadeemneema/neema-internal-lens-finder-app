@@ -1226,6 +1226,10 @@ export const findCrizalLensOptions = (brandData, sphere, cylinder, axis) => {
             if (productType === "FSV_PHOTOCHROMIC" && !isCylInFSVRange) {
                 return; // Skip FSV Photochromic products if ORIGINAL cylinder is outside -2 to +2
             }
+            // DIGITAL_ENHANCED_SINGLE_VISION follows FSV_STOCK_LENS filtering logic
+            if (productType === "DIGITAL_ENHANCED_SINGLE_VISION" && !isCylInFSVRange) {
+                return; // Skip Digital Enhanced SV products if ORIGINAL cylinder is outside -2 to +2
+            }
 
             // Iterate through all variants of this product
             if (product.variants && Array.isArray(product.variants)) {
@@ -1318,6 +1322,13 @@ export const findCrizalLensOptions = (brandData, sphere, cylinder, axis) => {
                                 power_range: variant.power_range,
                                 rp_max: variant.rp_max,
                                 max_cyl: variant.max_cyl,
+                                sph_min: variant.power_range?.sph_min,
+                                sph_max: variant.power_range?.sph_max,
+                                cyl_min: variant.power_range?.cyl_min,
+                                cyl_max: variant.power_range?.cyl_max,
+                                sph_type: variant.power_range?.sph_type,
+                                material: variant.material,
+                                blue_uv_capture: variant.blue_uv_capture || false,
                                 colors: variant.colors || [],
                                 colors_INDIA: variant.colors_INDIA || variant.colors || [],
                                 colors_INTERNATIONAL: variant.colors_INTERNATIONAL || variant.international_colors || [],
@@ -1337,6 +1348,13 @@ export const findCrizalLensOptions = (brandData, sphere, cylinder, axis) => {
                                 power_range: variant.power_range,
                                 rp_max: variant.rp_max,
                                 max_cyl: variant.max_cyl,
+                                sph_min: variant.power_range?.sph_min,
+                                sph_max: variant.power_range?.sph_max,
+                                cyl_min: variant.power_range?.cyl_min,
+                                cyl_max: variant.power_range?.cyl_max,
+                                sph_type: variant.power_range?.sph_type,
+                                material: variant.material,
+                                blue_uv_capture: variant.blue_uv_capture || false,
                                 colors: variant.colors || [],
                                 colors_INDIA: variant.colors_INDIA || variant.colors || [],
                                 colors_INTERNATIONAL: variant.colors_INTERNATIONAL || variant.international_colors || [],
@@ -1357,6 +1375,13 @@ export const findCrizalLensOptions = (brandData, sphere, cylinder, axis) => {
                                 power_range: variant.power_range,
                                 rp_max: variant.rp_max,
                                 max_cyl: variant.max_cyl,
+                                sph_min: variant.power_range?.sph_min,
+                                sph_max: variant.power_range?.sph_max,
+                                cyl_min: variant.power_range?.cyl_min,
+                                cyl_max: variant.power_range?.cyl_max,
+                                sph_type: variant.power_range?.sph_type,
+                                material: variant.material,
+                                blue_uv_capture: variant.blue_uv_capture || false,
                                 colors: variant.colors || [],
                                 colors_INDIA: variant.colors_INDIA || variant.colors || [],
                                 colors_INTERNATIONAL: variant.colors_INTERNATIONAL || variant.international_colors || [],

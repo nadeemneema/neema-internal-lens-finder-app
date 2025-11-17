@@ -1680,6 +1680,108 @@ const crizalData = {
       ]
     },
 
+    // DIGITAL ENHANCED SINGLE VISION PRODUCTS
+    "EYEZEN_START_STOCK": {
+      "name": "Eyezen Start Stock",
+      "type": "DIGITAL_ENHANCED_SINGLE_VISION",
+      "description": "Digital enhanced single vision lenses for digital device users",
+      "coating": "Crizal Easy Pro",
+      "variants": [
+        {
+          "index": "1.50",
+          "dia": 70,
+          "power_range": {
+            "sph_min": 2.25,
+            "sph_max": 3.0,
+            "cyl_min": 0,
+            "cyl_max": -2.0
+          },
+          "max_cyl": -2,
+          "price": 4680,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.50",
+          "dia": 75,
+          "power_range": {
+            "sph_min": -3.25,
+            "sph_max": -4.0,
+            "cyl_min": 0,
+            "cyl_max": -2.0
+          },
+          "max_cyl": -2,
+          "price": 4680,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.50",
+          "dia": 75,
+          "power_range": {
+            "sph_min": 0.25,
+            "sph_max": 2.0,
+            "cyl_min": 0,
+            "cyl_max": -2.0
+          },
+          "max_cyl": -2,
+          "price": 4680,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.50",
+          "dia": 80,
+          "power_range": {
+            "sph_type": "Plano/-3",
+            "sph_min": 0,
+            "sph_max": -3.0,
+            "cyl_min": 0,
+            "cyl_max": -2.0
+          },
+          "max_cyl": -2,
+          "price": 4680,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.60",
+          "dia": 65,
+          "power_range": {
+            "sph_min": 0.25,
+            "sph_max": 3.0,
+            "cyl_min": 0,
+            "cyl_max": -2.0
+          },
+          "max_cyl": -2,
+          "price": 6090,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.60",
+          "dia": 75,
+          "power_range": {
+            "sph_type": "Plano/-6",
+            "sph_min": 0,
+            "sph_max": -6.0,
+            "cyl_min": 0,
+            "cyl_max": -2.0
+          },
+          "max_cyl": -2,
+          "price": 6090,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        }
+      ]
+    },
+
     // BIFOCAL PRODUCTS
     "BIFOCAL_KBF_CLEAR": {
       "name": "Kryptok (KBF Clear)",
