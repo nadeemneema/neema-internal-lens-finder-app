@@ -1762,6 +1762,311 @@ const crizalData = {
         }
       ]
     },
+    
+    // Transitions Lenses Products
+    "TRANSITIONS_FSV_CLASSIC": {
+      "name": "Transitions FSV Classic",
+      "type": "FSV_PHOTOCHROMIC",
+      "coating": "Powered by Crizal",
+      "variants": [
+        {
+          "index": "1.56",
+          "dia": 65,
+          "power_range": {
+            "sph_min": 0.25,
+            "sph_max": 4.0,
+            "cyl_min": 2.0,
+            "cyl_max": -2.0
+          },
+          "rp_max": 4,
+          "max_cyl": -2,
+          "price": 4590,
+          "available": true,
+          "colors": ["Grey"],
+          "photochromic": true,
+          "note": "Cross Compound available"
+        },
+        {
+          "index": "1.56",
+          "dia": 70,
+          "power_range": {
+            "sph_min": 0,
+            "sph_max": -6.0,
+            "cyl_min": 0,
+            "cyl_max": -2.0
+          },
+          "rp_max": -6,
+          "max_cyl": -2,
+          "price": 4590,
+          "available": true,
+          "colors": ["Grey"],
+          "photochromic": true
+        }
+      ]
+    },
+    "TRANSITIONS_FSV_GEN_S": {
+      "name": "Transitions FSV Gen S",
+      "type": "FSV_PHOTOCHROMIC",
+      "coating": "Powered by Crizal",
+      "variants": [
+        {
+          "index": "1.50",
+          "dia": 70,
+          "power_range": {
+            "sph_min": 0,
+            "sph_max": -4.0,
+            "cyl_min": 0,
+            "cyl_max": -2.0
+          },
+          "rp_max": -4,
+          "max_cyl": -2,
+          "price": 8340,
+          "available": true,
+          "colors": ["Grey", "Brown", "Green", "Emerald", "Sapphire", "Amethyst", "Amber"],
+          "photochromic": true,
+          "tat_note": "Gen S except grey all colours will have +1 day TAT"
+        },
+        {
+          "index": "1.59",
+          "dia": 70,
+          "power_range": {
+            "sph_min": 0,
+            "sph_max": -6.0,
+            "cyl_min": 0,
+            "cyl_max": -2.0
+          },
+          "rp_max": -6,
+          "max_cyl": -2,
+          "price": 12460,
+          "available": true,
+          "colors": ["Grey", "Brown", "Green", "Emerald", "Sapphire", "Amethyst", "Amber"],
+          "photochromic": true,
+          "tat_note": "Gen S except grey all colours will have +1 day TAT"
+        }
+      ]
+    },
+    
+    "TRANSITIONS_RX_SV_CLASSIC_EASY_PRO": {
+      "name": "Transitions RX SV Classic - Crizal Easy Pro",
+      "type": "RX_PHOTOCHROMIC",
+      "coating": "Crizal Easy Pro",
+      "variants": [
+        {
+          "index": "1.50",
+          "dia": 70,
+          "power_range": {
+            "sph_min": 8.0,
+            "sph_max": -8.0,
+            "cyl_min": 4.0,
+            "cyl_max": -6.0
+          },
+          "max_cyl": -6,
+          "price": 8900,
+          "available": true,
+          "colors": ["Grey", "Brown"],
+          "photochromic": true
+        },
+        {
+          "index": "1.59",
+          "dia": 70,
+          "power_range": {
+            "sph_min": 6.0,
+            "sph_max": -9.0,
+            "cyl_min": 4.0,
+            "cyl_max": -6.0
+          },
+          "max_cyl": -6,
+          "price": 11620,
+          "available": true,
+          "colors": ["Grey"],
+          "photochromic": true
+        },
+      ]
+    },
+    "TRANSITIONS_RX_SV_CLASSIC_ROCK": {
+      "name": "Transitions RX SV Classic - Crizal Rock",
+      "type": "RX_PHOTOCHROMIC",
+      "coating": "Crizal Rock",
+      "variants": [
+        {
+          "index": "1.50",
+          "dia": 70,
+          "power_range": {
+            "sph_min": 8.0,
+            "sph_max": -8.0,
+            "cyl_min": 4.0,
+            "cyl_max": -6.0
+          },
+          "max_cyl": -6,
+          "price": 10490,
+          "available": true,
+          "colors": ["Grey", "Brown"],
+          "photochromic": true
+        },
+        {
+          "index": "1.59",
+          "dia": 70,
+          "power_range": {
+            "sph_min": 6.0,
+            "sph_max": -9.0,
+            "cyl_min": 4.0,
+            "cyl_max": -6.0
+          },
+          "max_cyl": -6,
+          "price": 13210,
+          "available": true,
+          "colors": ["Grey"],
+          "photochromic": true
+        },
+      ]
+    },
+    "TRANSITIONS_RX_SV_GEN_S": {
+      "name": "Transitions RX SV Gen S",
+      "type": "RX_PHOTOCHROMIC",
+      "variants": [
+        {
+          "index": "1.50",
+          "dia": 75,
+          "power_range": {
+            "sph_min": 8.0,
+            "sph_max": -8.0,
+            "cyl_min": 4.0,
+            "cyl_max": -6.0
+          },
+          "max_cyl": -6,
+          "price": 12600,
+          "available": true,
+          "colors_INDIA": ["Grey", "Brown", "Dark Graphite Green", "Emerald", "Sapphire", "Amethyst", "Amber", "Ruby"],
+          "photochromic": true,
+          "tat_note": "Gen S except grey all colours will have +1 day TAT"
+        },
+        {
+          "index": "1.59",
+          "dia": 75,
+          "power_range": {
+            "sph_min": 6.0,
+            "sph_max": -10.0,
+            "cyl_min": 4.0,
+            "cyl_max": -6.0
+          },
+          "max_cyl": -6,
+          "price": 15370,
+          "available": true,
+          "colors_INDIA": ["Grey", "Brown", "Dark Graphite Green", "Emerald", "Sapphire", "Amethyst", "Amber", "Ruby"],
+          "photochromic": true,
+          "tat_note": "Gen S except grey all colours will have +1 day TAT"
+        },
+        {
+          "index": "1.60",
+          "dia": 75,
+          "power_range": {
+            "sph_min": 8.0,
+            "sph_max": -12.0,
+            "cyl_min": 4.0,
+            "cyl_max": -6.0
+          },
+          "max_cyl": -6,
+          "price": 15370,
+          "available": true,
+          "colors_INDIA": ["Grey", "Brown", "Dark Graphite Green", "Sapphire", "Amber", "Ruby"],
+          "colors_INTERNATIONAL": ["Emerald", "Amethyst"],
+          "photochromic": true,
+          "international_charge": 3000
+        },
+        {
+          "index": "1.67",
+          "dia": 75,
+          "power_range": {
+            "sph_min": 9.0,
+            "sph_max": -14.0,
+            "cyl_min": 4.0,
+            "cyl_max": -6.0
+          },
+          "max_cyl": -6,
+          "price": 17240,
+          "available": true,
+          "colors_INDIA": ["Grey", "Brown", "Sapphire", "Amber", "Ruby"],
+          "colors_INTERNATIONAL": ["Emerald", "Dark Graphite Green", "Amethyst"],
+          "photochromic": true,
+          "international_charge": 3000
+        }
+      ]
+    },
+    "TRANSITIONS_RX_SV_XTRACTIVE_NEW_GEN": {
+      "name": "Transitions RX SV Xtractive New Gen",
+      "type": "RX_PHOTOCHROMIC",
+      "variants": [
+        {
+          "index": "1.50",
+          "dia": 75,
+          "power_range": {
+            "sph_min": 8.0,
+            "sph_max": -8.0,
+            "cyl_min": 4.0,
+            "cyl_max": -6.0
+          },
+          "max_cyl": -6,
+          "price": 14240,
+          "available": true,
+          "colors_INDIA": ["Grey", "Brown", "Dark Graphite Green"],
+          "colors_INTERNATIONAL": [],
+          "photochromic": true,
+          "note": "Xtractive NG is not available in 1.56 index"
+        },
+        {
+          "index": "1.59",
+          "dia": 75,
+          "power_range": {
+            "sph_min": 6.0,
+            "sph_max": -10.0,
+            "cyl_min": 4.0,
+            "cyl_max": -6.0
+          },
+          "max_cyl": -6,
+          "price": 16960,
+          "available": true,
+          "colors_INDIA": [],
+          "colors_INTERNATIONAL": ["Brown", "Grey"],
+          "photochromic": true,
+          "international_charge": 3000
+        },
+        {
+          "index": "1.60",
+          "dia": 75,
+          "power_range": {
+            "sph_min": 6.0,
+            "sph_max": -11.0,
+            "cyl_min": 4.0,
+            "cyl_max": -6.0
+          },
+          "max_cyl": -6,
+          "price": 16960,
+          "available": true,
+          "colors_INDIA": ["Grey", "Brown", "Dark Graphite Green"],
+          "colors_INTERNATIONAL": [],
+          "photochromic": true
+        },
+        {
+          "index": "1.67",
+          "dia": 75,
+          "power_range": {
+            "sph_min": 6.0,
+            "sph_max": -13.0,
+            "cyl_min": 4.0,
+            "cyl_max": -6.0
+          },
+          "max_cyl": -6,
+          "price": 18840,
+          "available": true,
+          "colors_INDIA": [],
+          "colors_INTERNATIONAL": ["Brown", "Dark Graphite Green", "Grey"],
+          "photochromic": true,
+          "international_charge": 3000
+        }
+      ]
+    },
+    
+    // Bifocal Products
     "BIFOCAL_DBF_CLEAR": {
       "name": "D Bi-focal (DBF Clear)",
       "type": "BIFOCAL",

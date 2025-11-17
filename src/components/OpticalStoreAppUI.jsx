@@ -49,6 +49,20 @@ const OpticalStoreAppUI = () => {
   // State for FSV type filter (FSV_STOCK_LENS, FSV_OTHER_RANGE, or RX_SINGLE_VISION)
   const [fsvTypeFilter, setFsvTypeFilter] = useState('FSV_STOCK_LENS');
 
+  // State for selected colors in Transitions table
+  const [selectedTransitionsColors, setSelectedTransitionsColors] = useState([]);
+
+  // Toggle color selection
+  const toggleColorSelection = (color) => {
+    setSelectedTransitionsColors(prev => {
+      if (prev.includes(color)) {
+        return prev.filter(c => c !== color);
+      } else {
+        return [...prev, color];
+      }
+    });
+  };
+
   // Load brand data when brand changes
   useEffect(() => {
     const loadData = async () => {
@@ -1691,6 +1705,532 @@ const OpticalStoreAppUI = () => {
                               }
                               
                               return null;
+                            })()}
+
+                            {/* Transitions FSV Photochromic Table */}
+                            {(() => {
+                              const fsvPhotochromicMatches = calculationResults.matches.filter(m => {
+                                const productType = brandData.products[m.productKey]?.type;
+                                return productType === 'FSV_PHOTOCHROMIC' && (fsvTypeFilter === 'FSV_STOCK_LENS' || fsvTypeFilter === 'FSV_OTHER_RANGE');
+                              });
+
+                              if (fsvPhotochromicMatches.length === 0) return null;
+
+                              // Group by product name (Classic vs Gen S)
+                              const productGroups = {};
+                              fsvPhotochromicMatches.forEach(match => {
+                                const productName = match.productName;
+                                if (!productGroups[productName]) {
+                                  productGroups[productName] = [];
+                                }
+                                productGroups[productName].push(match);
+                              });
+
+                              return (
+                                <div className="mt-4">
+                                  <h5 className="text-primary mb-3">
+                                    <i className="fas fa-sun mr-2"></i>
+                                    Transitions FSV
+                                  </h5>
+                                  <div className="table-responsive">
+                                    <table className="table table-bordered">
+                                      <thead>
+                                        <tr className="table-primary">
+                                          <th rowSpan="2" className="align-middle">INDEX</th>
+                                          {Object.keys(productGroups).map((productName, idx) => (
+                                            <th key={idx} colSpan="2" className="text-center">
+                                              {productName.replace('Transitions FSV ', '')}
+                                            </th>
+                                          ))}
+                                        </tr>
+                                        <tr className="table-light">
+                                          {Object.keys(productGroups).map((productName, idx) => (
+                                            <React.Fragment key={idx}>
+                                              <th className="text-center">POWERED BY CRIZAL</th>
+                                              <th className="text-center">TRANSITIONS COLOURS (INDIA)</th>
+                                            </React.Fragment>
+                                          ))}
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        {(() => {
+                                          // Get unique indices
+                                          const indices = [...new Set(fsvPhotochromicMatches.map(m => m.index))].sort();
+                                          
+                                          return indices.map((index, rowIdx) => (
+                                            <tr key={rowIdx}>
+                                              <td className="font-weight-bold">{index}</td>
+                                              {Object.keys(productGroups).map((productName, colIdx) => {
+                                                const variantsForIndex = productGroups[productName].filter(m => m.index === index);
+                                                const variant = variantsForIndex[0];
+                                                
+                                                return (
+                                                  <React.Fragment key={colIdx}>
+                                                    <td className="text-center">
+                                                      {variant ? (
+                                                        <span
+                                                          onClick={() => {
+                                                            setSelectedLensDetails(variant);
+                                                            setShowModal(true);
+                                                          }}
+                                                          style={{ cursor: 'pointer', color: '#007bff', textDecoration: 'underline' }}
+                                                        >
+                                                          ₹{variant.price.toLocaleString()}
+                                                        </span>
+                                                      ) : '-'}
+                                                    </td>
+                                                    <td className="text-center">
+                                                      {variant && variant.colors ? (
+                                                        <div className="d-flex justify-content-center flex-wrap">
+                                                          {variant.colors.map((color, colorIdx) => (
+                                                            <span
+                                                              key={colorIdx}
+                                                              className="badge badge-pill badge-secondary m-1"
+                                                              style={{
+                                                                backgroundColor: color === 'Grey' ? '#6c757d' :
+                                                                  color === 'Brown' ? '#8B4513' :
+                                                                  color === 'Green' ? '#28a745' :
+                                                                  color === 'Emerald' ? '#50C878' :
+                                                                  color === 'Sapphire' ? '#0F52BA' :
+                                                                  color === 'Amethyst' ? '#9966CC' :
+                                                                  color === 'Amber' ? '#FFBF00' : '#6c757d'
+                                                              }}
+                                                            >
+                                                              {color}
+                                                            </span>
+                                                          ))}
+                                                        </div>
+                                                      ) : '-'}
+                                                    </td>
+                                                  </React.Fragment>
+                                                );
+                                              })}
+                                            </tr>
+                                          ));
+                                        })()}
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                  {fsvPhotochromicMatches.some(m => m.tat_note) && (
+                                    <p className="text-muted small">
+                                      <i className="fas fa-info-circle mr-1"></i>
+                                      Gen S except grey all colours will have +1 day TAT.
+                                    </p>
+                                  )}
+                                </div>
+                              );
+                            })()}
+
+                            {/* Transitions RX Photochromic Table */}
+                            {(() => {
+                              const rxPhotochromicMatches = calculationResults.matches.filter(m => {
+                                const productType = brandData.products[m.productKey]?.type;
+                                return productType === 'RX_PHOTOCHROMIC' && fsvTypeFilter === 'RX_SINGLE_VISION';
+                              });
+
+                              if (rxPhotochromicMatches.length === 0) return null;
+
+                              // Separate by product type and coating
+                              const classicEasyProMatches = rxPhotochromicMatches.filter(m => 
+                                m.productName.includes('Classic') && m.productName.includes('Crizal Easy Pro')
+                              );
+                              const classicRockMatches = rxPhotochromicMatches.filter(m => 
+                                m.productName.includes('Classic') && m.productName.includes('Crizal Rock')
+                              );
+                              const genSMatches = rxPhotochromicMatches.filter(m => m.productName.includes('Gen S') && !m.productName.includes('Classic'));
+                              const xtractiveMatches = rxPhotochromicMatches.filter(m => m.productName.includes('Xtractive'));
+
+                              // Helper function to get color background
+                              const getColorBackground = (color) => {
+                                // Check if it's a hex code
+                                if (color.startsWith('#')) {
+                                  return color;
+                                }
+                                // Named color mapping
+                                const colorMap = {
+                                  'Grey': '#6c757d',
+                                  'Brown': '#8B4513',
+                                  'Green': '#28a745',
+                                  'Dark Graphite Green': '#3D5941',
+                                  'Emerald': '#50C878',
+                                  'Sapphire': '#0F52BA',
+                                  'Sapphire Blue': '#0F52BA',
+                                  'Amethyst': '#9966CC',
+                                  'Amethyst Purple': '#9966CC',
+                                  'Amber': '#FFBF00',
+                                  'Ruby': '#E0115F'
+                                };
+                                return colorMap[color] || '#6c757d';
+                              };
+
+                              // Get unique indices
+                              const indices = [...new Set(rxPhotochromicMatches.map(m => m.index))].sort();
+
+                              return (
+                                <div className="mt-4">
+                                  <h5 className="text-primary mb-3">
+                                    <i className="fas fa-sun mr-2"></i>
+                                    Transitions RX SV
+                                  </h5>
+                                  <div className="table-responsive">
+                                    <table className="table table-bordered table-sm">
+                                      <thead>
+                                        <tr className="table-primary">
+                                          <th rowSpan="3" className="align-middle text-center" style={{minWidth: '60px'}}>INDEX</th>
+                                          <th colSpan="4" className="text-center">CLASSIC</th>
+                                          <th colSpan="3" className="text-center">GEN S</th>
+                                          <th colSpan="3" className="text-center">Gen S / Xtractive NG</th>
+                                        </tr>
+                                        <tr className="table-info">
+                                          <th colSpan="2" className="text-center">Crizal Easy Pro</th>
+                                          <th colSpan="2" className="text-center">Crizal Rock</th>
+                                          <th colSpan="3" className="text-center">Crizal Easy Pro</th>
+                                          <th colSpan="3" className="text-center">Crizal Rock</th>
+                                        </tr>
+                                        <tr className="table-light">
+                                          <th className="text-center" style={{minWidth: '80px'}}>CLASSIC</th>
+                                          <th className="text-center" style={{minWidth: '60px'}}>INDIA</th>
+                                          <th className="text-center" style={{minWidth: '80px'}}>CLASSIC</th>
+                                          <th className="text-center" style={{minWidth: '60px'}}>INDIA</th>
+                                          <th className="text-center" style={{minWidth: '80px'}}>Price</th>
+                                          <th className="text-center" style={{minWidth: '80px'}}>INDIA</th>
+                                          <th className="text-center" style={{minWidth: '100px'}}>INTERNATIONAL*</th>
+                                          <th className="text-center" style={{minWidth: '80px'}}>Price</th>
+                                          <th className="text-center" style={{minWidth: '80px'}}>INDIA</th>
+                                          <th className="text-center" style={{minWidth: '100px'}}>INTERNATIONAL*</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        {indices.map((index, rowIdx) => {
+                                          // Classic - Crizal Easy Pro
+                                          const classicEasyPro = classicEasyProMatches.find(m => m.index === index);
+                                          
+                                          // Classic - Crizal Rock
+                                          const classicRock = classicRockMatches.find(m => m.index === index);
+
+                                          // Gen S - Crizal Easy Pro (India and International)
+                                          const genS = genSMatches.find(m => m.index === index);
+
+                                          // Xtractive NG - Crizal Rock (India and International)
+                                          const xtractive = xtractiveMatches.find(m => m.index === index);
+
+                                          return (
+                                            <tr key={rowIdx}>
+                                              <td className="font-weight-bold text-center">{index}</td>
+                                              
+                                              {/* Classic - Crizal Easy Pro - Price */}
+                                              <td className="text-center">
+                                                {classicEasyPro && classicEasyPro.price > 0 ? (
+                                                  <span
+                                                    onClick={() => {
+                                                      setSelectedLensDetails(classicEasyPro);
+                                                      setShowModal(true);
+                                                    }}
+                                                    style={{ cursor: 'pointer', color: '#007bff', textDecoration: 'underline' }}
+                                                  >
+                                                    {classicEasyPro.price.toLocaleString()}
+                                                  </span>
+                                                ) : '-'}
+                                              </td>
+                                              
+                                              {/* Classic - Crizal Easy Pro - Colors */}
+                                              <td className="text-center">
+                                                {classicEasyPro && classicEasyPro.colors && classicEasyPro.colors.length > 0 ? (
+                                                  <div className="d-flex justify-content-center flex-wrap">
+                                                    {classicEasyPro.colors.map((color, colorIdx) => (
+                                                      <div key={colorIdx} className="d-inline-block m-1">
+                                                        <span
+                                                          className="rounded-circle d-inline-block"
+                                                          style={{
+                                                            width: '18px',
+                                                            height: '18px',
+                                                            backgroundColor: getColorBackground(color),
+                                                            border: selectedTransitionsColors.includes(color) ? '2px solid #007bff' : '1px solid #dee2e6',
+                                                            cursor: 'pointer'
+                                                          }}
+                                                          title={color}
+                                                          onClick={() => toggleColorSelection(color)}
+                                                        />
+                                                        {selectedTransitionsColors.includes(color) && (
+                                                          <div className="badge badge-primary badge-pill mt-1" style={{fontSize: '0.7rem'}}>
+                                                            {color}
+                                                          </div>
+                                                        )}
+                                                      </div>
+                                                    ))}
+                                                  </div>
+                                                ) : '-'}
+                                              </td>
+
+                                              {/* Classic - Crizal Rock - Price */}
+                                              <td className="text-center">
+                                                {classicRock && classicRock.price > 0 ? (
+                                                  <span
+                                                    onClick={() => {
+                                                      setSelectedLensDetails(classicRock);
+                                                      setShowModal(true);
+                                                    }}
+                                                    style={{ cursor: 'pointer', color: '#007bff', textDecoration: 'underline' }}
+                                                  >
+                                                    {classicRock.price.toLocaleString()}
+                                                  </span>
+                                                ) : '-'}
+                                              </td>
+
+                                              {/* Classic - Crizal Rock - Colors */}
+                                              <td className="text-center">
+                                                {classicRock && classicRock.colors && classicRock.colors.length > 0 ? (
+                                                  <div className="d-flex justify-content-center flex-wrap">
+                                                    {classicRock.colors.map((color, colorIdx) => (
+                                                      <div key={colorIdx} className="d-inline-block m-1">
+                                                        <span
+                                                          className="rounded-circle d-inline-block"
+                                                          style={{
+                                                            width: '18px',
+                                                            height: '18px',
+                                                            backgroundColor: getColorBackground(color),
+                                                            border: selectedTransitionsColors.includes(color) ? '2px solid #007bff' : '1px solid #dee2e6',
+                                                            cursor: 'pointer'
+                                                          }}
+                                                          title={color}
+                                                          onClick={() => toggleColorSelection(color)}
+                                                        />
+                                                        {selectedTransitionsColors.includes(color) && (
+                                                          <div className="badge badge-primary badge-pill mt-1" style={{fontSize: '0.7rem'}}>
+                                                            {color}
+                                                          </div>
+                                                        )}
+                                                      </div>
+                                                    ))}
+                                                  </div>
+                                                ) : '-'}
+                                              </td>
+
+                                              {/* Gen S - Price */}
+                                              <td className="text-center">
+                                                {genS ? (
+                                                  genS.price > 0 ? (
+                                                    <span
+                                                      onClick={() => {
+                                                        setSelectedLensDetails(genS);
+                                                        setShowModal(true);
+                                                      }}
+                                                      style={{ cursor: 'pointer', color: '#007bff', textDecoration: 'underline' }}
+                                                    >
+                                                      {genS.price.toLocaleString()}
+                                                    </span>
+                                                  ) : '-'
+                                                ) : '-'}
+                                              </td>
+
+                                              {/* Gen S - India Colors */}
+                                              <td className="text-center">
+                                                {genS && genS.colors_INDIA && genS.colors_INDIA.length > 0 ? (
+                                                  <div className="d-flex justify-content-center flex-wrap">
+                                                    {genS.colors_INDIA.map((color, colorIdx) => (
+                                                      <div key={colorIdx} className="d-inline-block m-1">
+                                                        <span
+                                                          className="rounded-circle d-inline-block"
+                                                          style={{
+                                                            width: '18px',
+                                                            height: '18px',
+                                                            backgroundColor: getColorBackground(color),
+                                                            border: selectedTransitionsColors.includes(color) ? '2px solid #007bff' : '1px solid #dee2e6',
+                                                            cursor: 'pointer'
+                                                          }}
+                                                          title={color}
+                                                          onClick={() => toggleColorSelection(color)}
+                                                        />
+                                                        {selectedTransitionsColors.includes(color) && (
+                                                          <div className="badge badge-primary badge-pill mt-1" style={{fontSize: '0.7rem'}}>
+                                                            {color}
+                                                          </div>
+                                                        )}
+                                                      </div>
+                                                    ))}
+                                                  </div>
+                                                ) : '-'}
+                                              </td>
+
+                                              {/* Gen S - International Colors */}
+                                              <td className="text-center">
+                                                {genS && genS.colors_INTERNATIONAL && genS.colors_INTERNATIONAL.length > 0 ? (
+                                                  <div className="d-flex justify-content-center flex-wrap">
+                                                    {genS.colors_INTERNATIONAL.map((color, colorIdx) => (
+                                                      <div key={colorIdx} className="d-inline-block m-1">
+                                                        <span
+                                                          className="rounded-circle d-inline-block"
+                                                          style={{
+                                                            width: '18px',
+                                                            height: '18px',
+                                                            backgroundColor: getColorBackground(color),
+                                                            border: selectedTransitionsColors.includes(color) ? '2px solid #007bff' : '1px solid #dee2e6',
+                                                            cursor: 'pointer'
+                                                          }}
+                                                          title={color}
+                                                          onClick={() => toggleColorSelection(color)}
+                                                        />
+                                                        {selectedTransitionsColors.includes(color) && (
+                                                          <div className="badge badge-primary badge-pill mt-1" style={{fontSize: '0.7rem'}}>
+                                                            {color}
+                                                          </div>
+                                                        )}
+                                                      </div>
+                                                    ))}
+                                                  </div>
+                                                ) : '-'}
+                                              </td>
+
+                                              {/* Xtractive NG - Price */}
+                                              <td className="text-center">
+                                                {xtractive ? (
+                                                  xtractive.price > 0 ? (
+                                                    <span
+                                                      onClick={() => {
+                                                        setSelectedLensDetails(xtractive);
+                                                        setShowModal(true);
+                                                      }}
+                                                      style={{ cursor: 'pointer', color: '#007bff', textDecoration: 'underline' }}
+                                                    >
+                                                      {xtractive.price.toLocaleString()}
+                                                    </span>
+                                                  ) : '-'
+                                                ) : '-'}
+                                              </td>
+
+                                              {/* Xtractive NG - India Colors */}
+                                              <td className="text-center">
+                                                {xtractive && xtractive.colors_INDIA && xtractive.colors_INDIA.length > 0 ? (
+                                                  <div className="d-flex justify-content-center flex-wrap">
+                                                    {xtractive.colors_INDIA.map((color, colorIdx) => (
+                                                      <div key={colorIdx} className="d-inline-block m-1">
+                                                        <span
+                                                          className="rounded-circle d-inline-block"
+                                                          style={{
+                                                            width: '18px',
+                                                            height: '18px',
+                                                            backgroundColor: getColorBackground(color),
+                                                            border: selectedTransitionsColors.includes(color) ? '2px solid #007bff' : '1px solid #dee2e6',
+                                                            cursor: 'pointer'
+                                                          }}
+                                                          title={color}
+                                                          onClick={() => toggleColorSelection(color)}
+                                                        />
+                                                        {selectedTransitionsColors.includes(color) && (
+                                                          <div className="badge badge-primary badge-pill mt-1" style={{fontSize: '0.7rem'}}>
+                                                            {color}
+                                                          </div>
+                                                        )}
+                                                      </div>
+                                                    ))}
+                                                  </div>
+                                                ) : '-'}
+                                              </td>
+
+                                              {/* Xtractive NG - International Colors */}
+                                              <td className="text-center">
+                                                {xtractive && xtractive.colors_INTERNATIONAL && xtractive.colors_INTERNATIONAL.length > 0 ? (
+                                                  <div className="d-flex justify-content-center flex-wrap">
+                                                    {xtractive.colors_INTERNATIONAL.map((color, colorIdx) => (
+                                                      <div key={colorIdx} className="d-inline-block m-1">
+                                                        <span
+                                                          className="rounded-circle d-inline-block"
+                                                          style={{
+                                                            width: '18px',
+                                                            height: '18px',
+                                                            backgroundColor: getColorBackground(color),
+                                                            border: selectedTransitionsColors.includes(color) ? '2px solid #007bff' : '1px solid #dee2e6',
+                                                            cursor: 'pointer'
+                                                          }}
+                                                          title={color}
+                                                          onClick={() => toggleColorSelection(color)}
+                                                        />
+                                                        {selectedTransitionsColors.includes(color) && (
+                                                          <div className="badge badge-primary badge-pill mt-1" style={{fontSize: '0.7rem'}}>
+                                                            {color}
+                                                          </div>
+                                                        )}
+                                                      </div>
+                                                    ))}
+                                                  </div>
+                                                ) : '-'}
+                                              </td>
+                                            </tr>
+                                          );
+                                        })}
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                  <div className="text-muted small">
+                                    <p className="mb-1">
+                                      <i className="fas fa-info-circle mr-1"></i>
+                                      Gen S except grey all colours will have +1 day TAT.
+                                    </p>
+                                    <p className="mb-0">
+                                      <i className="fas fa-globe mr-1"></i>
+                                      International order will be charged ₹3000 extra. Up to +15 days TAT.
+                                    </p>
+                                  </div>
+
+                                  {/* Optifog Upgrade Card for Transitions RX SV */}
+                                  <div className="mt-4">
+                                    <div className="card border-info">
+                                      <div className="card-body text-center">
+                                        <h6 className="text-info mb-3">
+                                          <i className="fas fa-plus-circle mr-2"></i>
+                                          ADD-ON UPGRADE AVAILABLE
+                                        </h6>
+                                        <div className="d-flex align-items-center justify-content-center">
+                                          <div className="mr-4">
+                                            <img 
+                                              src="/optifog-icon.svg" 
+                                              alt="Fog Free Vision Optifog"
+                                              className="rounded"
+                                              style={{ border: '2px solid #007bff', width: '80px', height: '80px' }}
+                                            />
+                                          </div>
+                                          <div className="text-left">
+                                            <h5 className="mb-1">FOG FREE VISION (Optifog)</h5>
+                                            <p className="mb-1 text-muted">Available for Crizal Rock</p>
+                                            <h4 className="text-success mb-0">
+                                              <strong>+₹2000/Pair</strong>
+                                            </h4>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  {/* Essidrive Upgrade Card for Transitions RX SV */}
+                                  <div className="mt-3">
+                                    <div className="card border-info">
+                                      <div className="card-body text-center">
+                                        <h6 className="text-info mb-3">
+                                          <i className="fas fa-plus-circle mr-2"></i>
+                                          ADD-ON UPGRADE AVAILABLE
+                                        </h6>
+                                        <div className="d-flex align-items-center justify-content-center">
+                                          <div className="mr-4">
+                                            <img 
+                                              src="/essidrive-icon.svg" 
+                                              alt="Essidrive"
+                                              className="rounded"
+                                              style={{ border: '2px solid #007bff', width: '80px', height: '80px' }}
+                                            />
+                                          </div>
+                                          <div className="text-left">
+                                            <h5 className="mb-1">ESSIDRIVE™</h5>
+                                            <p className="mb-1 text-muted">Available for Crizal Rock</p>
+                                            <h4 className="text-success mb-0">
+                                              <strong>+₹2000/Pair</strong>
+                                            </h4>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              );
                             })()}
 
                             {/* RX Options Table - Show when "Addon Optifog?" is clicked and FSV Stock Lens is selected */}

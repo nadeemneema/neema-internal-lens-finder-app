@@ -1218,6 +1218,14 @@ export const findCrizalLensOptions = (brandData, sphere, cylinder, axis) => {
             if (productType === "RX_SINGLE_VISION" && isCylInFSVRange) {
                 return; // Skip RX products if ORIGINAL cylinder is inside -2 to +2
             }
+            // Include RX_PHOTOCHROMIC with RX_SINGLE_VISION filtering logic
+            if (productType === "RX_PHOTOCHROMIC" && isCylInFSVRange) {
+                return; // Skip RX Photochromic products if ORIGINAL cylinder is inside -2 to +2
+            }
+            // FSV_PHOTOCHROMIC follows FSV_STOCK_LENS filtering logic
+            if (productType === "FSV_PHOTOCHROMIC" && !isCylInFSVRange) {
+                return; // Skip FSV Photochromic products if ORIGINAL cylinder is outside -2 to +2
+            }
 
             // Iterate through all variants of this product
             if (product.variants && Array.isArray(product.variants)) {
@@ -1305,10 +1313,18 @@ export const findCrizalLensOptions = (brandData, sphere, cylinder, axis) => {
                                 productKey: productKey,
                                 index: variant.index,
                                 dia: variant.dia,
+                                coating: variant.coating || product.coating || "Easy Pro",
                                 price: variant.price,
                                 power_range: variant.power_range,
                                 rp_max: variant.rp_max,
                                 max_cyl: variant.max_cyl,
+                                colors: variant.colors || [],
+                                colors_INDIA: variant.colors_INDIA || variant.colors || [],
+                                colors_INTERNATIONAL: variant.colors_INTERNATIONAL || variant.international_colors || [],
+                                international_colors: variant.international_colors || [],
+                                photochromic: variant.photochromic || false,
+                                tat_note: variant.tat_note || null,
+                                international_charge: variant.international_charge || null,
                                 isTransposed: isTransposed
                             });
                             foundMatches.push({
@@ -1316,10 +1332,18 @@ export const findCrizalLensOptions = (brandData, sphere, cylinder, axis) => {
                                 productKey: productKey,
                                 index: variant.index,
                                 dia: variant.dia,
+                                coating: variant.coating || product.coating || "Rock",
                                 price: variant.price,
                                 power_range: variant.power_range,
                                 rp_max: variant.rp_max,
                                 max_cyl: variant.max_cyl,
+                                colors: variant.colors || [],
+                                colors_INDIA: variant.colors_INDIA || variant.colors || [],
+                                colors_INTERNATIONAL: variant.colors_INTERNATIONAL || variant.international_colors || [],
+                                international_colors: variant.international_colors || [],
+                                photochromic: variant.photochromic || false,
+                                tat_note: variant.tat_note || null,
+                                international_charge: variant.international_charge || null,
                                 isTransposed: isTransposed
                             });
                         } else {
@@ -1328,10 +1352,18 @@ export const findCrizalLensOptions = (brandData, sphere, cylinder, axis) => {
                                 productKey: productKey,
                                 index: variant.index,
                                 dia: variant.dia,
+                                coating: variant.coating || product.coating || null,
                                 price: variant.price,
                                 power_range: variant.power_range,
                                 rp_max: variant.rp_max,
                                 max_cyl: variant.max_cyl,
+                                colors: variant.colors || [],
+                                colors_INDIA: variant.colors_INDIA || variant.colors || [],
+                                colors_INTERNATIONAL: variant.colors_INTERNATIONAL || variant.international_colors || [],
+                                international_colors: variant.international_colors || [],
+                                photochromic: variant.photochromic || false,
+                                tat_note: variant.tat_note || null,
+                                international_charge: variant.international_charge || null,
                                 isTransposed: isTransposed
                             });
                         }
