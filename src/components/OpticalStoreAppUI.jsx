@@ -176,13 +176,29 @@ const OpticalStoreAppUI = () => {
             return productType === 'RX_SINGLE_VISION';
           });
           
-          // Default priority: RX Single Vision > FSV Stock Lens > FSV Other
-          if (hasRxProducts) {
-            setFsvTypeFilter('RX_SINGLE_VISION');
-          } else if (hasFSVStock) {
-            setFsvTypeFilter('FSV_STOCK_LENS');
-          } else if (hasFSVOther) {
-            setFsvTypeFilter('FSV_OTHER_RANGE');
+          // Check if cylinder is outside -2 to +2 range
+          const cylinderValue = parseFloat(prescription.cylinder || "0");
+          const isCylOutsideRange = cylinderValue < -2 || cylinderValue > 2;
+          
+          // Default priority:
+          // If cylinder is outside -2 to +2: RX Single Vision > FSV Stock Lens > FSV Other
+          // If cylinder is inside -2 to +2: FSV Stock Lens > FSV Other > RX Single Vision
+          if (isCylOutsideRange) {
+            if (hasRxProducts) {
+              setFsvTypeFilter('RX_SINGLE_VISION');
+            } else if (hasFSVStock) {
+              setFsvTypeFilter('FSV_STOCK_LENS');
+            } else if (hasFSVOther) {
+              setFsvTypeFilter('FSV_OTHER_RANGE');
+            }
+          } else {
+            if (hasFSVStock) {
+              setFsvTypeFilter('FSV_STOCK_LENS');
+            } else if (hasFSVOther) {
+              setFsvTypeFilter('FSV_OTHER_RANGE');
+            } else if (hasRxProducts) {
+              setFsvTypeFilter('RX_SINGLE_VISION');
+            }
           }
         }
       }
@@ -1542,7 +1558,6 @@ const OpticalStoreAppUI = () => {
                                     >
                                       {hasFSVStock && <option value="FSV_STOCK_LENS">FSV Stock Lens</option>}
                                       {hasFSVOther && <option value="FSV_OTHER_RANGE">Other FSV</option>}
-                                      {hasRxProducts && <option value="RX_SINGLE_VISION">RX Single Vision</option>}
                                     </select>
                                   </div>
                                 );
@@ -1599,7 +1614,7 @@ const OpticalStoreAppUI = () => {
                                         </label>
                                       </div>
                                     )}
-                                    {hasTransitions && fsvTypeFilter !== 'FSV_OTHER_RANGE' && (
+                                    {hasTransitions && fsvTypeFilter !== 'FSV_OTHER_RANGE' && fsvTypeFilter !== 'RX_SINGLE_VISION' && (
                                       <div className="custom-control custom-checkbox mr-4">
                                         <input
                                           type="checkbox"
@@ -1617,7 +1632,7 @@ const OpticalStoreAppUI = () => {
                                         </label>
                                       </div>
                                     )}
-                                    {hasEyezen && fsvTypeFilter !== 'FSV_OTHER_RANGE' && (
+                                    {hasEyezen && fsvTypeFilter !== 'FSV_OTHER_RANGE' && fsvTypeFilter !== 'RX_SINGLE_VISION' && (
                                       <div className="custom-control custom-checkbox mr-4">
                                         <input
                                           type="checkbox"
@@ -1672,6 +1687,37 @@ const OpticalStoreAppUI = () => {
                                       </div>
                                     )}
                                   </div>
+                                </div>
+                              );
+                            })()}
+
+                            {/* Go back to FSV link - Show when in RX Single Vision mode */}
+                            {fsvTypeFilter === 'RX_SINGLE_VISION' && (() => {
+                              const hasFSVStock = calculationResults.matches.some(m => {
+                                const productType = brandData.products[m.productKey]?.type;
+                                return productType === 'FSV_STOCK_LENS';
+                              });
+                              
+                              if (!hasFSVStock) return null;
+                              
+                              return (
+                                <div className="mt-3 mb-3 text-center">
+                                  <a 
+                                    href="#"
+                                    onClick={(e) => {
+                                      e.preventDefault();
+                                      setFsvTypeFilter('FSV_STOCK_LENS');
+                                      setSelectedLensType('white');
+                                    }}
+                                    style={{ 
+                                      color: '#28a745', 
+                                      textDecoration: 'underline',
+                                      fontSize: '1.1rem',
+                                      fontWeight: '600'
+                                    }}
+                                  >
+                                    ← Go back to FSV
+                                  </a>
                                 </div>
                               );
                             })()}
@@ -1777,12 +1823,36 @@ const OpticalStoreAppUI = () => {
                                   })()}
                                 </tbody>
                               </table>
-                              <div className="mt-3 text-center">
-                                <a 
-                                  href="#"
-                                  onClick={(e) => {
+                              {fsvTypeFilter !== 'RX_SINGLE_VISION' && (
+                                <div className="mt-3 text-center">
+                                  <a 
+                                    href="#"
+                                    onClick={(e) => {
                                     e.preventDefault();
                                     setFsvTypeFilter('RX_SINGLE_VISION');
+                                    
+                                    // Intelligently select the appropriate RX lens type based on available products
+                                    const hasRxPhotochromic = calculationResults.matches.some(m => {
+                                      const productType = brandData.products[m.productKey]?.type;
+                                      return productType === 'RX_PHOTOCHROMIC';
+                                    });
+                                    const hasRxDigitalEnhanced = calculationResults.matches.some(m => {
+                                      const productType = brandData.products[m.productKey]?.type;
+                                      return productType === 'RX_DIGITAL_ENHANCED_SINGLE_VISION';
+                                    });
+                                    const hasRxStandard = calculationResults.matches.some(m => {
+                                      const productType = brandData.products[m.productKey]?.type;
+                                      return productType === 'RX_SINGLE_VISION';
+                                    });
+                                    
+                                    // Priority: Standard RX (white) > Photochromic RX > Digital Enhanced RX
+                                    if (hasRxStandard) {
+                                      setSelectedLensType('white');
+                                    } else if (hasRxPhotochromic) {
+                                      setSelectedLensType('photochromic-rx');
+                                    } else if (hasRxDigitalEnhanced) {
+                                      setSelectedLensType('digital-enhanced-rx');
+                                    }
                                   }}
                                   style={{ 
                                     color: '#007bff', 
@@ -1790,14 +1860,13 @@ const OpticalStoreAppUI = () => {
                                     fontSize: '1rem',
                                     fontWeight: '500'
                                   }}
-                                >
-                                  Click here for RX
-                                </a>
-                              </div>
+                                  >
+                                    Click here for RX
+                                  </a>
+                                </div>
+                              )}
                             </div>
-                            )}
-
-                            {/* Check if FSV or RX products are displayed */}
+                            )}                            {/* Check if FSV or RX products are displayed */}
                             {showWhiteLenses && (() => {
                               // Use the current filter selection to determine what's displayed
                               const filteredMatches = calculationResults.matches.filter(m => {
@@ -1974,6 +2043,26 @@ const OpticalStoreAppUI = () => {
                                       Gen S except grey all colours will have +1 day TAT.
                                     </p>
                                   )}
+                                  {fsvTypeFilter !== 'RX_SINGLE_VISION' && (
+                                    <div className="mt-3 text-center">
+                                      <a 
+                                        href="#"
+                                        onClick={(e) => {
+                                          e.preventDefault();
+                                          setFsvTypeFilter('RX_SINGLE_VISION');
+                                          setSelectedLensType('photochromic-rx');
+                                        }}
+                                        style={{ 
+                                          color: '#007bff', 
+                                          textDecoration: 'underline',
+                                          fontSize: '1rem',
+                                          fontWeight: '500'
+                                        }}
+                                      >
+                                        Click here for RX Transitions
+                                      </a>
+                                    </div>
+                                  )}
                                 </div>
                               );
                             })()}
@@ -2047,6 +2136,26 @@ const OpticalStoreAppUI = () => {
                                       Digital enhanced single vision lenses designed for digital device users with Blue UV Capture technology.
                                     </p>
                                   </div>
+                                  {fsvTypeFilter !== 'RX_SINGLE_VISION' && (
+                                    <div className="mt-3 text-center">
+                                      <a 
+                                        href="#"
+                                        onClick={(e) => {
+                                          e.preventDefault();
+                                          setFsvTypeFilter('RX_SINGLE_VISION');
+                                          setSelectedLensType('digital-enhanced-rx');
+                                        }}
+                                        style={{ 
+                                          color: '#007bff', 
+                                          textDecoration: 'underline',
+                                          fontSize: '1rem',
+                                          fontWeight: '500'
+                                        }}
+                                      >
+                                        Click here for RX Eyezen
+                                      </a>
+                                    </div>
+                                  )}
                                 </div>
                               );
                             })()}

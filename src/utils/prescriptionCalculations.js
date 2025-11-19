@@ -1215,13 +1215,7 @@ export const findCrizalLensOptions = (brandData, sphere, cylinder, axis) => {
             }
             // Note: FSV_OTHER_RANGE is NOT filtered here because some products like Elements 1.60 
             // have variants with extended cylinder ranges (e.g., 0 to -4) that go beyond the standard FSV range
-            if (productType === "RX_SINGLE_VISION" && isCylInFSVRange) {
-                return; // Skip RX products if ORIGINAL cylinder is inside -2 to +2
-            }
-            // Include RX_PHOTOCHROMIC with RX_SINGLE_VISION filtering logic
-            if (productType === "RX_PHOTOCHROMIC" && isCylInFSVRange) {
-                return; // Skip RX Photochromic products if ORIGINAL cylinder is inside -2 to +2
-            }
+            // RX_SINGLE_VISION and RX_PHOTOCHROMIC are now available for all cylinder ranges
             // FSV_PHOTOCHROMIC follows FSV_STOCK_LENS filtering logic
             if (productType === "FSV_PHOTOCHROMIC" && !isCylInFSVRange) {
                 return; // Skip FSV Photochromic products if ORIGINAL cylinder is outside -2 to +2
@@ -1230,10 +1224,7 @@ export const findCrizalLensOptions = (brandData, sphere, cylinder, axis) => {
             if (productType === "DIGITAL_ENHANCED_SINGLE_VISION" && !isCylInFSVRange) {
                 return; // Skip Digital Enhanced SV products if ORIGINAL cylinder is outside -2 to +2
             }
-            // RX_DIGITAL_ENHANCED_SINGLE_VISION follows RX_SINGLE_VISION filtering logic
-            if (productType === "RX_DIGITAL_ENHANCED_SINGLE_VISION" && isCylInFSVRange) {
-                return; // Skip RX Digital Enhanced SV products if ORIGINAL cylinder is inside -2 to +2
-            }
+            // RX_DIGITAL_ENHANCED_SINGLE_VISION is now available for all cylinder ranges
 
             // Iterate through all variants of this product
             if (product.variants && Array.isArray(product.variants)) {
