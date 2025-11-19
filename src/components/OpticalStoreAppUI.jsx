@@ -2801,7 +2801,7 @@ const OpticalStoreAppUI = () => {
                             })()}
 
                             {/* RX Options Table - Show when "Addon Optifog?" is clicked and FSV Stock Lens is selected */}
-                            {showRxOptions && rxCalculationResults && rxCalculationResults.matches && rxCalculationResults.matches.length > 0 && fsvTypeFilter === 'FSV_STOCK_LENS' && (
+                            {showRxOptions && rxCalculationResults && rxCalculationResults.matches && rxCalculationResults.matches.length > 0 && fsvTypeFilter === 'FSV_STOCK_LENS' && showWhiteLenses && (
                               <div className="mt-4">
                                 <h5 className="text-info mb-3">
                                   <i className="fas fa-flask mr-2"></i>
