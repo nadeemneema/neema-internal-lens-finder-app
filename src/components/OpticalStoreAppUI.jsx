@@ -176,29 +176,15 @@ const OpticalStoreAppUI = () => {
             return productType === 'RX_SINGLE_VISION';
           });
           
-          // Check if cylinder is outside -2 to +2 range
-          const cylinderValue = parseFloat(prescription.cylinder || "0");
-          const isCylOutsideRange = cylinderValue < -2 || cylinderValue > 2;
-          
-          // Default priority:
-          // If cylinder is outside -2 to +2: RX Single Vision > FSV Stock Lens > FSV Other
-          // If cylinder is inside -2 to +2: FSV Stock Lens > FSV Other > RX Single Vision
-          if (isCylOutsideRange) {
-            if (hasRxProducts) {
-              setFsvTypeFilter('RX_SINGLE_VISION');
-            } else if (hasFSVStock) {
-              setFsvTypeFilter('FSV_STOCK_LENS');
-            } else if (hasFSVOther) {
-              setFsvTypeFilter('FSV_OTHER_RANGE');
-            }
-          } else {
-            if (hasFSVStock) {
-              setFsvTypeFilter('FSV_STOCK_LENS');
-            } else if (hasFSVOther) {
-              setFsvTypeFilter('FSV_OTHER_RANGE');
-            } else if (hasRxProducts) {
-              setFsvTypeFilter('RX_SINGLE_VISION');
-            }
+          // Default priority: Always prioritize FSV products if available
+          // FSV Stock Lens > FSV Other > RX Single Vision
+          // This ensures FSV products are shown first regardless of cylinder range
+          if (hasFSVStock) {
+            setFsvTypeFilter('FSV_STOCK_LENS');
+          } else if (hasFSVOther) {
+            setFsvTypeFilter('FSV_OTHER_RANGE');
+          } else if (hasRxProducts) {
+            setFsvTypeFilter('RX_SINGLE_VISION');
           }
         }
       }
@@ -1543,10 +1529,11 @@ const OpticalStoreAppUI = () => {
                               // Show dropdown if:
                               // 1. Both FSV types available (cylinder inside -2 to +2)
                               // 2. RX products available AND FSV Other available (for Elements 1.60 case with cyl 0 to -4)
-                              const showDropdown = (hasFSVStock && hasFSVOther) || (hasRxProducts && hasFSVOther && !hasFSVStock);
+                              // 3. In RX Single Vision mode (show RX Single Vision and Other FSV options)
+                              const showDropdown = (hasFSVStock && hasFSVOther) || (hasRxProducts && hasFSVOther && !hasFSVStock) || fsvTypeFilter === 'RX_SINGLE_VISION';
 
-                              // Only show dropdown if White checkbox is ticked
-                              if (showDropdown && showWhiteLenses) {
+                              // Show dropdown if White checkbox is ticked OR if in RX Single Vision mode
+                              if ((showDropdown && showWhiteLenses) || fsvTypeFilter === 'RX_SINGLE_VISION') {
                                 return (
                                   <div className="mb-3">
                                     <label htmlFor="fsvTypeSelect" className="mr-2"><strong>Select Type:</strong></label>
@@ -1556,8 +1543,9 @@ const OpticalStoreAppUI = () => {
                                       value={fsvTypeFilter}
                                       onChange={(e) => setFsvTypeFilter(e.target.value)}
                                     >
-                                      {hasFSVStock && <option value="FSV_STOCK_LENS">FSV Stock Lens</option>}
+                                      {hasFSVStock && fsvTypeFilter !== 'RX_SINGLE_VISION' && <option value="FSV_STOCK_LENS">FSV Stock Lens</option>}
                                       {hasFSVOther && <option value="FSV_OTHER_RANGE">Other FSV</option>}
+                                      {hasRxProducts && fsvTypeFilter === 'RX_SINGLE_VISION' && <option value="RX_SINGLE_VISION">RX Single Vision</option>}
                                     </select>
                                   </div>
                                 );
