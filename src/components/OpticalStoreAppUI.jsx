@@ -1763,8 +1763,11 @@ const OpticalStoreAppUI = () => {
                                     
                                     // Helper function to get recommendation tag
                                     const getRecommendationTag = (index) => {
+                                      const indexValue = parseFloat(index);
+                                      if (indexValue === 1.59) {
+                                        return <span className="badge badge-warning ml-1">For Rimless Frames</span>;
+                                      }
                                       if (sphereValue < -3.75) {
-                                        const indexValue = parseFloat(index);
                                         if (indexValue === 1.60) {
                                           return <span className="badge badge-info ml-1">Recommended</span>;
                                         } else if (indexValue === 1.67 || indexValue === 1.74) {
@@ -2834,8 +2837,11 @@ const OpticalStoreAppUI = () => {
                                         
                                         // Helper function to get recommendation tag
                                         const getRecommendationTag = (index) => {
+                                          const indexValue = parseFloat(index);
+                                          if (indexValue === 1.59) {
+                                            return <span className="badge badge-warning ml-1">For Rimless Frames</span>;
+                                          }
                                           if (sphereValue < -3.75) {
-                                            const indexValue = parseFloat(index);
                                             if (indexValue === 1.60) {
                                               return <span className="badge badge-info ml-1">Recommended</span>;
                                             } else if (indexValue === 1.67 || indexValue === 1.74) {
