@@ -1782,6 +1782,1000 @@ const crizalData = {
       ]
     },
 
+    // RX DIGITAL ENHANCED SINGLE VISION PRODUCTS
+    "EYEZEN_START_RX_EASY_PRO": {
+      "name": "Eyezen Start RX - Crizal Easy Pro",
+      "type": "RX_DIGITAL_ENHANCED_SINGLE_VISION",
+      "coating": "Crizal Easy Pro",
+      "description": "Custom digital enhanced single vision lenses with Crizal Easy Pro coating",
+      "variants": [
+        {
+          "index": "1.56",
+          "dia": 60,
+          "power_range": {
+            "sph_min": 6.0,
+            "sph_max": -10.0,
+            "cyl_min": 0,
+            "cyl_max": -6.0
+          },
+          "max_cyl": -6,
+          "price": 5150,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.56",
+          "dia": 65,
+          "power_range": {
+            "sph_min": 6.0,
+            "sph_max": -9.0,
+            "cyl_min": 0,
+            "cyl_max": -4.0
+          },
+          "max_cyl": -4,
+          "price": 5150,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.56",
+          "dia": 70,
+          "power_range": {
+            "sph_min": 6.0,
+            "sph_max": -8.0,
+            "cyl_min": 0,
+            "cyl_max": -3.0
+          },
+          "max_cyl": -3,
+          "price": 5150,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.56",
+          "dia": 75,
+          "power_range": {
+            "sph_min": 5.0,
+            "sph_max": -7.0,
+            "cyl_min": 0,
+            "cyl_max": -2.0
+          },
+          "max_cyl": -2,
+          "price": 5150,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.56",
+          "dia": 80,
+          "power_range": {
+            "sph_min": 3.5,
+            "sph_max": -6.0,
+            "cyl_min": 0,
+            "cyl_max": -1.0
+          },
+          "max_cyl": -1,
+          "price": 5150,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.59",
+          "dia": "60/65",
+          "power_range": {
+            "sph_min": 6.0,
+            "sph_max": -10.0,
+            "cyl_min": 0,
+            "cyl_max": -6.0
+          },
+          "max_cyl": -6,
+          "price": 6090,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.59",
+          "dia": 70,
+          "power_range": {
+            "sph_min": 6.0,
+            "sph_max": -9.5,
+            "cyl_min": 0,
+            "cyl_max": -6.0
+          },
+          "max_cyl": -6,
+          "price": 6090,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.59",
+          "dia": 75,
+          "power_range": {
+            "sph_min": 6.0,
+            "sph_max": -8.5,
+            "cyl_min": 0,
+            "cyl_max": -5.0
+          },
+          "max_cyl": -5,
+          "price": 6090,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.60",
+          "dia": "60/65",
+          "power_range": {
+            "sph_min": 7.0,
+            "sph_max": -11.0,
+            "cyl_min": 0,
+            "cyl_max": -6.0
+          },
+          "max_cyl": -6,
+          "price": 6090,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.60",
+          "dia": 70,
+          "power_range": {
+            "sph_min": 7.0,
+            "sph_max": -10.0,
+            "cyl_min": 0,
+            "cyl_max": -6.0
+          },
+          "max_cyl": -6,
+          "price": 6090,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.60",
+          "dia": 75,
+          "power_range": {
+            "sph_min": 7.0,
+            "sph_max": -9.0,
+            "cyl_min": 0,
+            "cyl_max": -5.0
+          },
+          "max_cyl": -5,
+          "price": 6090,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.60",
+          "dia": 80,
+          "power_range": {
+            "sph_min": 6.0,
+            "sph_max": -8.0,
+            "cyl_min": 0,
+            "cyl_max": -4.0
+          },
+          "max_cyl": -4,
+          "price": 6090,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.67",
+          "dia": "60/65",
+          "power_range": {
+            "sph_min": 9.0,
+            "sph_max": -12.0,
+            "cyl_min": 0,
+            "cyl_max": -6.0
+          },
+          "max_cyl": -6,
+          "price": 7960,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.67",
+          "dia": 70,
+          "power_range": {
+            "sph_min": 9.0,
+            "sph_max": -11.0,
+            "cyl_min": 0,
+            "cyl_max": -6.0
+          },
+          "max_cyl": -6,
+          "price": 7960,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.67",
+          "dia": 75,
+          "power_range": {
+            "sph_min": 8.0,
+            "sph_max": -10.0,
+            "cyl_min": 0,
+            "cyl_max": -5.0
+          },
+          "max_cyl": -5,
+          "price": 7960,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.67",
+          "dia": 80,
+          "power_range": {
+            "sph_min": 6.0,
+            "sph_max": -9.0,
+            "cyl_min": 0,
+            "cyl_max": -4.0
+          },
+          "max_cyl": -4,
+          "price": 7960,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        }
+      ]
+    },
+    "EYEZEN_START_RX_ROCK": {
+      "name": "Eyezen Start RX - Crizal Rock",
+      "type": "RX_DIGITAL_ENHANCED_SINGLE_VISION",
+      "coating": "Crizal Rock",
+      "description": "Custom digital enhanced single vision lenses with Crizal Rock coating",
+      "variants": [
+        {
+          "index": "1.56",
+          "dia": 60,
+          "power_range": {
+            "sph_min": 6.0,
+            "sph_max": -10.0,
+            "cyl_min": 0,
+            "cyl_max": -6.0
+          },
+          "max_cyl": -6,
+          "price": 6750,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.56",
+          "dia": 65,
+          "power_range": {
+            "sph_min": 6.0,
+            "sph_max": -9.0,
+            "cyl_min": 0,
+            "cyl_max": -4.0
+          },
+          "max_cyl": -4,
+          "price": 6750,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.56",
+          "dia": 70,
+          "power_range": {
+            "sph_min": 6.0,
+            "sph_max": -8.0,
+            "cyl_min": 0,
+            "cyl_max": -3.0
+          },
+          "max_cyl": -3,
+          "price": 6750,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.56",
+          "dia": 75,
+          "power_range": {
+            "sph_min": 5.0,
+            "sph_max": -7.0,
+            "cyl_min": 0,
+            "cyl_max": -2.0
+          },
+          "max_cyl": -2,
+          "price": 6750,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.56",
+          "dia": 80,
+          "power_range": {
+            "sph_min": 3.5,
+            "sph_max": -6.0,
+            "cyl_min": 0,
+            "cyl_max": -1.0
+          },
+          "max_cyl": -1,
+          "price": 6750,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.59",
+          "dia": "60/65",
+          "power_range": {
+            "sph_min": 6.0,
+            "sph_max": -10.0,
+            "cyl_min": 0,
+            "cyl_max": -6.0
+          },
+          "max_cyl": -6,
+          "price": 7680,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.59",
+          "dia": 70,
+          "power_range": {
+            "sph_min": 6.0,
+            "sph_max": -9.5,
+            "cyl_min": 0,
+            "cyl_max": -6.0
+          },
+          "max_cyl": -6,
+          "price": 7680,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.59",
+          "dia": 75,
+          "power_range": {
+            "sph_min": 6.0,
+            "sph_max": -8.5,
+            "cyl_min": 0,
+            "cyl_max": -5.0
+          },
+          "max_cyl": -5,
+          "price": 7680,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.60",
+          "dia": "60/65",
+          "power_range": {
+            "sph_min": 7.0,
+            "sph_max": -11.0,
+            "cyl_min": 0,
+            "cyl_max": -6.0
+          },
+          "max_cyl": -6,
+          "price": 7680,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.60",
+          "dia": 70,
+          "power_range": {
+            "sph_min": 7.0,
+            "sph_max": -10.0,
+            "cyl_min": 0,
+            "cyl_max": -6.0
+          },
+          "max_cyl": -6,
+          "price": 7680,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.60",
+          "dia": 75,
+          "power_range": {
+            "sph_min": 7.0,
+            "sph_max": -9.0,
+            "cyl_min": 0,
+            "cyl_max": -5.0
+          },
+          "max_cyl": -5,
+          "price": 7680,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.60",
+          "dia": 80,
+          "power_range": {
+            "sph_min": 6.0,
+            "sph_max": -8.0,
+            "cyl_min": 0,
+            "cyl_max": -4.0
+          },
+          "max_cyl": -4,
+          "price": 7680,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.67",
+          "dia": "60/65",
+          "power_range": {
+            "sph_min": 9.0,
+            "sph_max": -12.0,
+            "cyl_min": 0,
+            "cyl_max": -6.0
+          },
+          "max_cyl": -6,
+          "price": 9560,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.67",
+          "dia": 70,
+          "power_range": {
+            "sph_min": 9.0,
+            "sph_max": -11.0,
+            "cyl_min": 0,
+            "cyl_max": -6.0
+          },
+          "max_cyl": -6,
+          "price": 9560,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.67",
+          "dia": 75,
+          "power_range": {
+            "sph_min": 8.0,
+            "sph_max": -10.0,
+            "cyl_min": 0,
+            "cyl_max": -5.0
+          },
+          "max_cyl": -5,
+          "price": 9560,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.67",
+          "dia": 80,
+          "power_range": {
+            "sph_min": 6.0,
+            "sph_max": -9.0,
+            "cyl_min": 0,
+            "cyl_max": -4.0
+          },
+          "max_cyl": -4,
+          "price": 9560,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        }
+      ]
+    },
+    "EYEZEN_START_RX_PREVENCIA": {
+      "name": "Eyezen Start RX - Crizal Prevencia",
+      "type": "RX_DIGITAL_ENHANCED_SINGLE_VISION",
+      "coating": "Crizal Prevencia",
+      "description": "Custom digital enhanced single vision lenses with Crizal Prevencia coating for blue light protection",
+      "variants": [
+        {
+          "index": "1.56",
+          "dia": 60,
+          "power_range": {
+            "sph_min": 6.0,
+            "sph_max": -10.0,
+            "cyl_min": 0,
+            "cyl_max": -6.0
+          },
+          "max_cyl": -6,
+          "price": 8150,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.56",
+          "dia": 65,
+          "power_range": {
+            "sph_min": 6.0,
+            "sph_max": -9.0,
+            "cyl_min": 0,
+            "cyl_max": -4.0
+          },
+          "max_cyl": -4,
+          "price": 8150,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.56",
+          "dia": 70,
+          "power_range": {
+            "sph_min": 6.0,
+            "sph_max": -8.0,
+            "cyl_min": 0,
+            "cyl_max": -3.0
+          },
+          "max_cyl": -3,
+          "price": 8150,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.56",
+          "dia": 75,
+          "power_range": {
+            "sph_min": 5.0,
+            "sph_max": -7.0,
+            "cyl_min": 0,
+            "cyl_max": -2.0
+          },
+          "max_cyl": -2,
+          "price": 8150,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.56",
+          "dia": 80,
+          "power_range": {
+            "sph_min": 3.5,
+            "sph_max": -6.0,
+            "cyl_min": 0,
+            "cyl_max": -1.0
+          },
+          "max_cyl": -1,
+          "price": 8150,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.59",
+          "dia": "60/65",
+          "power_range": {
+            "sph_min": 6.0,
+            "sph_max": -10.0,
+            "cyl_min": 0,
+            "cyl_max": -6.0
+          },
+          "max_cyl": -6,
+          "price": 9090,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.59",
+          "dia": 70,
+          "power_range": {
+            "sph_min": 6.0,
+            "sph_max": -9.5,
+            "cyl_min": 0,
+            "cyl_max": -6.0
+          },
+          "max_cyl": -6,
+          "price": 9090,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.59",
+          "dia": 75,
+          "power_range": {
+            "sph_min": 6.0,
+            "sph_max": -8.5,
+            "cyl_min": 0,
+            "cyl_max": -5.0
+          },
+          "max_cyl": -5,
+          "price": 9090,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.60",
+          "dia": "60/65",
+          "power_range": {
+            "sph_min": 7.0,
+            "sph_max": -11.0,
+            "cyl_min": 0,
+            "cyl_max": -6.0
+          },
+          "max_cyl": -6,
+          "price": 9090,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.60",
+          "dia": 70,
+          "power_range": {
+            "sph_min": 7.0,
+            "sph_max": -10.0,
+            "cyl_min": 0,
+            "cyl_max": -6.0
+          },
+          "max_cyl": -6,
+          "price": 9090,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.60",
+          "dia": 75,
+          "power_range": {
+            "sph_min": 7.0,
+            "sph_max": -9.0,
+            "cyl_min": 0,
+            "cyl_max": -5.0
+          },
+          "max_cyl": -5,
+          "price": 9090,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.60",
+          "dia": 80,
+          "power_range": {
+            "sph_min": 6.0,
+            "sph_max": -8.0,
+            "cyl_min": 0,
+            "cyl_max": -4.0
+          },
+          "max_cyl": -4,
+          "price": 9090,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.67",
+          "dia": "60/65",
+          "power_range": {
+            "sph_min": 9.0,
+            "sph_max": -12.0,
+            "cyl_min": 0,
+            "cyl_max": -6.0
+          },
+          "max_cyl": -6,
+          "price": 10960,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.67",
+          "dia": 70,
+          "power_range": {
+            "sph_min": 9.0,
+            "sph_max": -11.0,
+            "cyl_min": 0,
+            "cyl_max": -6.0
+          },
+          "max_cyl": -6,
+          "price": 10960,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.67",
+          "dia": 75,
+          "power_range": {
+            "sph_min": 8.0,
+            "sph_max": -10.0,
+            "cyl_min": 0,
+            "cyl_max": -5.0
+          },
+          "max_cyl": -5,
+          "price": 10960,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.67",
+          "dia": 80,
+          "power_range": {
+            "sph_min": 6.0,
+            "sph_max": -9.0,
+            "cyl_min": 0,
+            "cyl_max": -4.0
+          },
+          "max_cyl": -4,
+          "price": 10960,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        }
+      ]
+    },
+    "EYEZEN_START_RX_ESSIDRIVE": {
+      "name": "Eyezen Start RX - Essidrive",
+      "type": "RX_DIGITAL_ENHANCED_SINGLE_VISION",
+      "coating": "Essidrive",
+      "description": "Custom digital enhanced single vision lenses with Essidrive coating for night driving",
+      "variants": [
+        {
+          "index": "1.56",
+          "dia": 60,
+          "power_range": {
+            "sph_min": 6.0,
+            "sph_max": -10.0,
+            "cyl_min": 0,
+            "cyl_max": -6.0
+          },
+          "max_cyl": -6,
+          "price": 8620,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.56",
+          "dia": 65,
+          "power_range": {
+            "sph_min": 6.0,
+            "sph_max": -9.0,
+            "cyl_min": 0,
+            "cyl_max": -4.0
+          },
+          "max_cyl": -4,
+          "price": 8620,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.56",
+          "dia": 70,
+          "power_range": {
+            "sph_min": 6.0,
+            "sph_max": -8.0,
+            "cyl_min": 0,
+            "cyl_max": -3.0
+          },
+          "max_cyl": -3,
+          "price": 8620,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.56",
+          "dia": 75,
+          "power_range": {
+            "sph_min": 5.0,
+            "sph_max": -7.0,
+            "cyl_min": 0,
+            "cyl_max": -2.0
+          },
+          "max_cyl": -2,
+          "price": 8620,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.56",
+          "dia": 80,
+          "power_range": {
+            "sph_min": 3.5,
+            "sph_max": -6.0,
+            "cyl_min": 0,
+            "cyl_max": -1.0
+          },
+          "max_cyl": -1,
+          "price": 8620,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.59",
+          "dia": "60/65",
+          "power_range": {
+            "sph_min": 6.0,
+            "sph_max": -10.0,
+            "cyl_min": 0,
+            "cyl_max": -6.0
+          },
+          "max_cyl": -6,
+          "price": 9550,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.59",
+          "dia": 70,
+          "power_range": {
+            "sph_min": 6.0,
+            "sph_max": -9.5,
+            "cyl_min": 0,
+            "cyl_max": -6.0
+          },
+          "max_cyl": -6,
+          "price": 9550,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.59",
+          "dia": 75,
+          "power_range": {
+            "sph_min": 6.0,
+            "sph_max": -8.5,
+            "cyl_min": 0,
+            "cyl_max": -5.0
+          },
+          "max_cyl": -5,
+          "price": 9550,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.60",
+          "dia": "60/65",
+          "power_range": {
+            "sph_min": 7.0,
+            "sph_max": -11.0,
+            "cyl_min": 0,
+            "cyl_max": -6.0
+          },
+          "max_cyl": -6,
+          "price": 9550,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.60",
+          "dia": 70,
+          "power_range": {
+            "sph_min": 7.0,
+            "sph_max": -10.0,
+            "cyl_min": 0,
+            "cyl_max": -6.0
+          },
+          "max_cyl": -6,
+          "price": 9550,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.60",
+          "dia": 75,
+          "power_range": {
+            "sph_min": 7.0,
+            "sph_max": -9.0,
+            "cyl_min": 0,
+            "cyl_max": -5.0
+          },
+          "max_cyl": -5,
+          "price": 9550,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.60",
+          "dia": 80,
+          "power_range": {
+            "sph_min": 6.0,
+            "sph_max": -8.0,
+            "cyl_min": 0,
+            "cyl_max": -4.0
+          },
+          "max_cyl": -4,
+          "price": 9550,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.67",
+          "dia": "60/65",
+          "power_range": {
+            "sph_min": 9.0,
+            "sph_max": -12.0,
+            "cyl_min": 0,
+            "cyl_max": -6.0
+          },
+          "max_cyl": -6,
+          "price": 11430,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.67",
+          "dia": 70,
+          "power_range": {
+            "sph_min": 9.0,
+            "sph_max": -11.0,
+            "cyl_min": 0,
+            "cyl_max": -6.0
+          },
+          "max_cyl": -6,
+          "price": 11430,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.67",
+          "dia": 75,
+          "power_range": {
+            "sph_min": 8.0,
+            "sph_max": -10.0,
+            "cyl_min": 0,
+            "cyl_max": -5.0
+          },
+          "max_cyl": -5,
+          "price": 11430,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        },
+        {
+          "index": "1.67",
+          "dia": 80,
+          "power_range": {
+            "sph_min": 6.0,
+            "sph_max": -9.0,
+            "cyl_min": 0,
+            "cyl_max": -4.0
+          },
+          "max_cyl": -4,
+          "price": 11430,
+          "available": true,
+          "material": "Blue UV Capture",
+          "blue_uv_capture": true
+        }
+      ]
+    },
+
     // BIFOCAL PRODUCTS
     "BIFOCAL_KBF_CLEAR": {
       "name": "Kryptok (KBF Clear)",

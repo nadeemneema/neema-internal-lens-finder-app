@@ -1230,6 +1230,10 @@ export const findCrizalLensOptions = (brandData, sphere, cylinder, axis) => {
             if (productType === "DIGITAL_ENHANCED_SINGLE_VISION" && !isCylInFSVRange) {
                 return; // Skip Digital Enhanced SV products if ORIGINAL cylinder is outside -2 to +2
             }
+            // RX_DIGITAL_ENHANCED_SINGLE_VISION follows RX_SINGLE_VISION filtering logic
+            if (productType === "RX_DIGITAL_ENHANCED_SINGLE_VISION" && isCylInFSVRange) {
+                return; // Skip RX Digital Enhanced SV products if ORIGINAL cylinder is inside -2 to +2
+            }
 
             // Iterate through all variants of this product
             if (product.variants && Array.isArray(product.variants)) {

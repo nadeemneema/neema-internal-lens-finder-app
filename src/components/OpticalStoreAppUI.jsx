@@ -56,6 +56,8 @@ const OpticalStoreAppUI = () => {
   const showWhiteLenses = selectedLensType === 'white';
   const showTransitionsLenses = selectedLensType === 'transitions';
   const showSpecialLenses = selectedLensType === 'special';
+  const showPhotochromicRx = selectedLensType === 'photochromic-rx';
+  const showDigitalEnhancedRx = selectedLensType === 'digital-enhanced-rx';
 
   // State for selected colors in Transitions table
   const [selectedTransitionsColors, setSelectedTransitionsColors] = useState([]);
@@ -1563,7 +1565,17 @@ const OpticalStoreAppUI = () => {
                                 return productType === 'DIGITAL_ENHANCED_SINGLE_VISION';
                               });
 
-                              if (!hasFSVStock && !hasTransitions && !hasEyezen) return null;
+                              const hasRxPhotochromic = calculationResults.matches.some(m => {
+                                const productType = brandData.products[m.productKey]?.type;
+                                return productType === 'RX_PHOTOCHROMIC' && fsvTypeFilter === 'RX_SINGLE_VISION';
+                              });
+
+                              const hasRxDigitalEnhanced = calculationResults.matches.some(m => {
+                                const productType = brandData.products[m.productKey]?.type;
+                                return productType === 'RX_DIGITAL_ENHANCED_SINGLE_VISION' && fsvTypeFilter === 'RX_SINGLE_VISION';
+                              });
+
+                              if (!hasFSVStock && !hasTransitions && !hasEyezen && !hasRxPhotochromic && !hasRxDigitalEnhanced) return null;
 
                               return (
                                 <div className="mb-3 p-3 border rounded bg-light">
@@ -1587,7 +1599,7 @@ const OpticalStoreAppUI = () => {
                                         </label>
                                       </div>
                                     )}
-                                    {hasTransitions && (
+                                    {hasTransitions && fsvTypeFilter !== 'FSV_OTHER_RANGE' && (
                                       <div className="custom-control custom-checkbox mr-4">
                                         <input
                                           type="checkbox"
@@ -1605,8 +1617,8 @@ const OpticalStoreAppUI = () => {
                                         </label>
                                       </div>
                                     )}
-                                    {hasEyezen && (
-                                      <div className="custom-control custom-checkbox">
+                                    {hasEyezen && fsvTypeFilter !== 'FSV_OTHER_RANGE' && (
+                                      <div className="custom-control custom-checkbox mr-4">
                                         <input
                                           type="checkbox"
                                           className="custom-control-input"
@@ -1620,6 +1632,42 @@ const OpticalStoreAppUI = () => {
                                         />
                                         <label className="custom-control-label" htmlFor="specialCheck">
                                           Special Lenses (Eyezen)
+                                        </label>
+                                      </div>
+                                    )}
+                                    {hasRxPhotochromic && (
+                                      <div className="custom-control custom-checkbox mr-4">
+                                        <input
+                                          type="checkbox"
+                                          className="custom-control-input"
+                                          id="photochromicRxCheck"
+                                          checked={showPhotochromicRx}
+                                          onChange={(e) => {
+                                            if (e.target.checked) {
+                                              setSelectedLensType('photochromic-rx');
+                                            }
+                                          }}
+                                        />
+                                        <label className="custom-control-label" htmlFor="photochromicRxCheck">
+                                          Photochromic RX
+                                        </label>
+                                      </div>
+                                    )}
+                                    {hasRxDigitalEnhanced && (
+                                      <div className="custom-control custom-checkbox">
+                                        <input
+                                          type="checkbox"
+                                          className="custom-control-input"
+                                          id="digitalEnhancedRxCheck"
+                                          checked={showDigitalEnhancedRx}
+                                          onChange={(e) => {
+                                            if (e.target.checked) {
+                                              setSelectedLensType('digital-enhanced-rx');
+                                            }
+                                          }}
+                                        />
+                                        <label className="custom-control-label" htmlFor="digitalEnhancedRxCheck">
+                                          Digital Enhanced RX
                                         </label>
                                       </div>
                                     )}
@@ -1729,6 +1777,23 @@ const OpticalStoreAppUI = () => {
                                   })()}
                                 </tbody>
                               </table>
+                              <div className="mt-3 text-center">
+                                <a 
+                                  href="#"
+                                  onClick={(e) => {
+                                    e.preventDefault();
+                                    setFsvTypeFilter('RX_SINGLE_VISION');
+                                  }}
+                                  style={{ 
+                                    color: '#007bff', 
+                                    textDecoration: 'underline',
+                                    fontSize: '1rem',
+                                    fontWeight: '500'
+                                  }}
+                                >
+                                  Click here for RX
+                                </a>
+                              </div>
                             </div>
                             )}
 
@@ -1987,7 +2052,7 @@ const OpticalStoreAppUI = () => {
                             })()}
 
                             {/* Transitions RX Photochromic Table */}
-                            {(() => {
+                            {showPhotochromicRx && (() => {
                               const rxPhotochromicMatches = calculationResults.matches.filter(m => {
                                 const productType = brandData.products[m.productKey]?.type;
                                 return productType === 'RX_PHOTOCHROMIC' && fsvTypeFilter === 'RX_SINGLE_VISION';
@@ -2390,6 +2455,234 @@ const OpticalStoreAppUI = () => {
                                               <strong>+₹2000/Pair</strong>
                                             </h4>
                                           </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              );
+                            })()}
+
+                            {/* Eyezen Start RX Table */}
+                            {showDigitalEnhancedRx && (() => {
+                              const eyezenRxMatches = calculationResults.matches.filter(m => {
+                                const productType = brandData.products[m.productKey]?.type;
+                                return productType === 'RX_DIGITAL_ENHANCED_SINGLE_VISION' && fsvTypeFilter === 'RX_SINGLE_VISION';
+                              });
+
+                              if (eyezenRxMatches.length === 0) return null;
+
+                              // Group by coating type (Easy Pro, Rock, Prevencia, Essidrive)
+                              const coatingGroups = {
+                                'Crizal Easy Pro': [],
+                                'Crizal Rock': [],
+                                'Crizal Prevencia': [],
+                                'Essidrive': []
+                              };
+
+                              eyezenRxMatches.forEach(match => {
+                                if (coatingGroups[match.coating]) {
+                                  coatingGroups[match.coating].push(match);
+                                }
+                              });
+
+                              // Get unique indices
+                              const indices = ['1.56', '1.59', '1.60', '1.67'];
+
+                              // Engraving codes
+                              const engravingCodes = {
+                                '1.56': 'ɵλ',
+                                '1.59': 'ɵⱣ',
+                                '1.60': 'ɵб',
+                                '1.67': 'ɵπ'
+                              };
+
+                              return (
+                                <div className="mt-4">
+                                  <h5 className="text-primary mb-3" style={{ color: '#c2185b' }}>
+                                    <i className="fas fa-eye mr-2"></i>
+                                    EYEZEN START RX
+                                  </h5>
+                                  <p className="text-muted small mb-2">
+                                    <strong>Price/Pair In ₹</strong>
+                                  </p>
+                                  <div className="table-responsive">
+                                    <table className="table table-bordered table-sm">
+                                      <thead>
+                                        <tr style={{ backgroundColor: '#c2185b', color: 'white' }}>
+                                          <th className="text-center align-middle" style={{ minWidth: '80px' }}>INDEX</th>
+                                          <th className="text-center align-middle" style={{ minWidth: '120px' }}>
+                                            Crizal<br/>Easy<sup>Pro</sup>
+                                          </th>
+                                          <th className="text-center align-middle" style={{ minWidth: '120px' }}>
+                                            Crizal<br/>Rock<sup>™</sup>
+                                          </th>
+                                          <th className="text-center align-middle" style={{ minWidth: '120px' }}>
+                                            Crizal<br/>Prevencia<sup>®</sup>
+                                          </th>
+                                          <th className="text-center align-middle" style={{ minWidth: '120px' }}>
+                                            Essidrive<sup>™</sup>
+                                          </th>
+                                          <th className="text-center align-middle" style={{ minWidth: '100px' }}>Engraving</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        {indices.map((index, rowIdx) => {
+                                          const easyProMatch = coatingGroups['Crizal Easy Pro'].find(m => m.index === index);
+                                          const rockMatch = coatingGroups['Crizal Rock'].find(m => m.index === index);
+                                          const prevenciaMatch = coatingGroups['Crizal Prevencia'].find(m => m.index === index);
+                                          const essidriveMatch = coatingGroups['Essidrive'].find(m => m.index === index);
+
+                                          return (
+                                            <tr key={rowIdx} style={{ backgroundColor: rowIdx % 2 === 0 ? '#f8f9fa' : 'white' }}>
+                                              <td className="text-center align-middle font-weight-bold">{index}</td>
+                                              <td className="text-center align-middle">
+                                                {easyProMatch ? (
+                                                  <>
+                                                    <span
+                                                      onClick={() => {
+                                                        setSelectedLensDetails(easyProMatch);
+                                                        setShowModal(true);
+                                                      }}
+                                                      style={{ cursor: 'pointer', color: '#007bff', textDecoration: 'underline' }}
+                                                    >
+                                                      {easyProMatch.price.toLocaleString()}
+                                                    </span>
+                                                    <span className="ml-2" style={{ color: '#007bff', fontSize: '1.2rem' }}>●</span>
+                                                  </>
+                                                ) : '-'}
+                                              </td>
+                                              <td className="text-center align-middle">
+                                                {rockMatch ? (
+                                                  <>
+                                                    <span
+                                                      onClick={() => {
+                                                        setSelectedLensDetails(rockMatch);
+                                                        setShowModal(true);
+                                                      }}
+                                                      style={{ cursor: 'pointer', color: '#007bff', textDecoration: 'underline' }}
+                                                    >
+                                                      {rockMatch.price.toLocaleString()}
+                                                    </span>
+                                                    <span className="ml-2" style={{ color: '#007bff', fontSize: '1.2rem' }}>●</span>
+                                                  </>
+                                                ) : '-'}
+                                              </td>
+                                              <td className="text-center align-middle">
+                                                {prevenciaMatch ? (
+                                                  <>
+                                                    <span
+                                                      onClick={() => {
+                                                        setSelectedLensDetails(prevenciaMatch);
+                                                        setShowModal(true);
+                                                      }}
+                                                      style={{ cursor: 'pointer', color: '#007bff', textDecoration: 'underline' }}
+                                                    >
+                                                      {prevenciaMatch.price.toLocaleString()}
+                                                    </span>
+                                                    <span className="ml-2" style={{ color: '#007bff', fontSize: '1.2rem' }}>●</span>
+                                                  </>
+                                                ) : '-'}
+                                              </td>
+                                              <td className="text-center align-middle">
+                                                {essidriveMatch ? (
+                                                  <>
+                                                    <span
+                                                      onClick={() => {
+                                                        setSelectedLensDetails(essidriveMatch);
+                                                        setShowModal(true);
+                                                      }}
+                                                      style={{ cursor: 'pointer', color: '#007bff', textDecoration: 'underline' }}
+                                                    >
+                                                      {essidriveMatch.price.toLocaleString()}
+                                                    </span>
+                                                    <span className="ml-2" style={{ color: '#007bff', fontSize: '1.2rem' }}>●</span>
+                                                  </>
+                                                ) : '-'}
+                                              </td>
+                                              <td className="text-center align-middle">{engravingCodes[index]}</td>
+                                            </tr>
+                                          );
+                                        })}
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                  <div className="mt-2">
+                                    <p className="mb-1">
+                                      <span style={{ color: '#007bff', fontSize: '1.2rem' }}>●</span>
+                                      <span className="ml-2 text-muted small">Blue UV Capture material.</span>
+                                    </p>
+                                    <p className="text-muted small mb-1">
+                                      Eyezen Start Rx is not available with Transitions Classic & Xtractive NG variants.
+                                    </p>
+                                    <p className="text-muted small mb-0">
+                                      Prevencia is not available with Transitions.
+                                    </p>
+                                  </div>
+
+                                  {/* Transitions Gen 8 Upgrade Card for Eyezen Start RX */}
+                                  <div className="mt-4">
+                                    <div className="card border-success">
+                                      <div className="card-body text-center">
+                                        <h6 className="text-success mb-3">
+                                          <i className="fas fa-plus-circle mr-2"></i>
+                                          ADD-ON UPGRADE AVAILABLE
+                                        </h6>
+                                        <div className="d-flex align-items-center justify-content-center">
+                                          <div className="mr-4">
+                                            <img 
+                                              src="/transitions-icon.svg" 
+                                              alt="Transitions Gen 8"
+                                              className="rounded"
+                                              style={{ border: '2px solid #28a745', width: '80px', height: '80px' }}
+                                            />
+                                          </div>
+                                          <div className="text-left">
+                                            <h5 className="mb-1">Transitions Gen 8</h5>
+                                            <p className="mb-1 text-muted">Available for Eyezen Start RX</p>
+                                            <h4 className="text-success mb-0">
+                                              <strong>+₹8,900/Pair</strong>
+                                            </h4>
+                                          </div>
+                                        </div>
+                                        
+                                        {/* Available Colors */}
+                                        <div className="mt-3 mb-3">
+                                          <p className="mb-2 font-weight-bold">Available Colors:</p>
+                                          <div className="d-flex justify-content-center flex-wrap">
+                                            {[
+                                              { name: 'Grey', color: '#6c757d' },
+                                              { name: 'Brown', color: '#8B4513' },
+                                              { name: 'Dark Graphite Green', color: '#3D5941' },
+                                              { name: 'Sapphire', color: '#0F52BA' },
+                                              { name: 'Amber', color: '#FFBF00' },
+                                              { name: 'Emerald', color: '#50C878' },
+                                              { name: 'Amethyst', color: '#9966CC' }
+                                            ].map((colorObj, idx) => (
+                                              <div key={idx} className="text-center m-2">
+                                                <div
+                                                  className="rounded-circle d-inline-block"
+                                                  style={{
+                                                    width: '30px',
+                                                    height: '30px',
+                                                    backgroundColor: colorObj.color,
+                                                    border: '2px solid #dee2e6'
+                                                  }}
+                                                  title={colorObj.name}
+                                                />
+                                                <div className="small mt-1" style={{ maxWidth: '80px', fontSize: '0.7rem' }}>
+                                                  {colorObj.name}
+                                                </div>
+                                              </div>
+                                            ))}
+                                          </div>
+                                        </div>
+
+                                        <div className="mt-3">
+                                          <p className="text-danger small font-weight-bold mb-0">
+                                            <i className="fas fa-exclamation-triangle mr-1"></i>
+                                            NOTE: NOT AVAILABLE FOR PREVENCIA LENSES
+                                          </p>
                                         </div>
                                       </div>
                                     </div>
